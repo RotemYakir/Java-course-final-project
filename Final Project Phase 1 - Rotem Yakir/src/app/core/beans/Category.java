@@ -1,6 +1,6 @@
 package app.core.beans;
 
-public enum Category {
+public enum Category  {
 
 	
 	ELECTRICITY,
