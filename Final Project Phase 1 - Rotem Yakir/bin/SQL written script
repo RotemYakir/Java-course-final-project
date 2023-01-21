@@ -1,0 +1,40 @@
+
+create database coupon_system;
+
+create table companies (
+id int primary key auto_increment, 
+name varchar(100) not null,
+email varchar(100) not null,
+password varchar(100) not null
+);
+
+create table customers (
+id int primary key auto_increment,
+first_name varchar(100) not null,
+last_name varchar(100) not null,
+email varchar(100) not null,
+password varchar(100) not null
+);
+
+create table coupons(
+id int primary key auto_increment,
+company_id int not null,
+category enum('ELECTRICITY','RESTAURANT','VACATION','FARMACY','CLOTHING') not null,
+foreign key(company_id) references companies(id) on update cascade on delete cascade  ,
+title varchar(100) not null,
+description varchar(100),
+start_date date,
+end_date date not null,
+amount int not null,
+price double not null,
+image varchar(100) -- the name of a file or an image of the coupon
+);
+
+create table customers_vs_coupons(
+customer_id int not null,
+coupon_id int not null,
+primary key (customer_id, coupon_id),
+foreign key (customer_id) references customers(id) on update cascade on delete cascade,
+foreign key (coupon_id) references coupons(id) on update cascade on delete cascade
+);
+
