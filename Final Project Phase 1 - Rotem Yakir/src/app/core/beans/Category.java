@@ -8,5 +8,7 @@ public enum Category  {
 	VACATION,
 	FARMACY,
 	CLOTHING
+	  
+	
 	
 }
