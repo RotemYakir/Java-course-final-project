@@ -19,7 +19,7 @@ import app.core.services.login.LoginManager.ClientType;
 import app.core.threads.CouponExpirationDailyJob;
 
 
-@Component
+//@Component
 public class Test implements CommandLineRunner {
 
 	
