@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import app.core.entities.Company;
+import app.core.entities.Customer;
 import app.core.services.AdminService;
 import app.core.services.CompanyService;
 import app.core.services.CustomerService;
@@ -42,7 +44,11 @@ class ApplicationTests {
 
 		// TODO how do i clear the sql each time im running the test (and not via
 		// application properties)?
+	}
 
+	@BeforeEach
+	public void enterALine() {
+		System.out.println();
 	}
 
 	@Test
@@ -84,8 +90,7 @@ class ApplicationTests {
 				new Company(3, "Dan Hotel", "DanHotel@email.com", "changed :)", currentCompany3.getCoupons()));
 		assertFalse(currentCompany3.getPassword().equals(updatedCompany3.getPassword()));
 	}
-	
-	
+
 	@Test
 	@Order(5)
 	void getAllCompanies() {
@@ -96,5 +101,21 @@ class ApplicationTests {
 		}
 	}
 
+	@Test
+	@Order(6)
+	void addCustomers() {
+		adminService.addCustomer(new Customer("Billy", "Joel", "BillyJoel@email.com", "1122334455"));
+		adminService.addCustomer(new Customer("Agatha", "Christie", "AgathaChristie@email.com", "detective952"));
+		adminService.addCustomer(new Customer("Linoy", "Ashram", "LinoyAshram@email.com", "goldie294"));
+		adminService.addCustomer(new Customer("Eyal", "Shani", "EyalShani@email.com", "tomatoes"));
+		adminService.addCustomer(new Customer("Delete", "Later", "DeleteMe@email.com", "329864"));
+		Assertions.assertEquals(5, adminService.getAllCustomers().size());
+	}
 
+	@Test
+	@Order(7)
+	void deleteCustomer() {
+		adminService.deleteCustomer(5);
+		Assertions.assertEquals(4, adminService.getAllCompanies().size());
+	}
 }
