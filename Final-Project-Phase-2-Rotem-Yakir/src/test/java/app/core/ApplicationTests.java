@@ -46,10 +46,10 @@ class ApplicationTests {
 		// application properties)?
 	}
 
-	@BeforeEach
-	public void enterALine() {
-		System.out.println();
-	}
+//	@BeforeEach
+//	public void enterALine() {
+//		System.out.println();
+//	}
 
 	@Test
 	@Order(1)
@@ -93,8 +93,8 @@ class ApplicationTests {
 
 	@Test
 	@Order(5)
-	void getAllCompanies() {
-		System.out.println("All companies: ");
+	void printAllCompanies() {
+		System.out.println("All companies: ");    //might delete - already using this method in addCompany
 		for (Company company : adminService.getAllCompanies()) {
 			System.out.println(company);
 			Assertions.assertEquals(Company.class, company.getClass());
@@ -117,5 +117,23 @@ class ApplicationTests {
 	void deleteCustomer() {
 		adminService.deleteCustomer(5);
 		Assertions.assertEquals(4, adminService.getAllCompanies().size());
+	}
+	
+	@Test
+	@Order(8)
+	void updateCustomer() {
+		Customer currentCustomer1 = adminService.getCustomer(1);
+		Customer updatedCustomer1 = adminService.updateCustomer(new Customer(1, "Billy", "Joel", "newBillyJ@email.com", "389234",currentCustomer1.getCoupons()));
+		Assertions.assertFalse(currentCustomer1.getEmail().equals(updatedCustomer1.getEmail()));
+	}
+	
+	@Test
+	@Order(9)
+	void printAllCustomers() {          //might delete - already using this method in addCustomer
+		System.out.println("All customers: ");
+		for (Customer customer : adminService.getAllCustomers()) {
+			System.out.println(customer);
+			Assertions.assertEquals(Customer.class,customer.getClass());
+		}
 	}
 }
