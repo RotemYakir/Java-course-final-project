@@ -19,7 +19,7 @@ import app.core.services.login.LoginManager.ClientType;
 import app.core.threads.CouponExpirationDailyJob;
 
 
-//@Component
+@Component
 public class Test implements CommandLineRunner {
 
 	
@@ -34,9 +34,6 @@ public class Test implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		
-		
 		
 
 		AdminService admin = (AdminService) loginManager.login("admin@admin.com", "admin", ClientType.ADMIN);

@@ -16,15 +16,14 @@ import app.core.exceptions.CouponSystemException;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 @Service
 @Scope("prototype")
 @Transactional
 public class CompanyService extends ClientService {
 
 	private int companyId;
-	
-	
 
 	/**
 	 * compares email and password given by the company to the email and password
@@ -45,62 +44,59 @@ public class CompanyService extends ClientService {
 	 * @param coupon the coupon details
 	 * @return object of the coupon that was added, with a generated id from the
 	 *         database.
-	 * @throws CouponSystemException if coupons does not exist / the company already
+	 * @throws CouponSystemException if couponId already exists in the system / the company already
 	 *                               have a coupon of the same title / coupon is
 	 *                               expired / coupon amount is negative.
 	 */
 	public Coupon addNewCoupon(Coupon coupon) {
-		if (coupon != null) {
-			if (couponRepo.existsByTitleAndCompany_id(coupon.getTitle(),this.companyId)) {
-				throw new CouponSystemException("FAILED to add new coupon. coupon title: " + coupon.getTitle()
-						+ " already exists in the company.");
-			}
-			if (coupon.getEndDate().isBefore(LocalDate.now())) {
-				throw new CouponSystemException(
-						"FAILED to add new coupon. The expiration date of the coupon has passed.");
-			}
-			if (coupon.getAmount() < 0) {
-				throw new CouponSystemException("FAILED to add the coupon - amount cannot be negative.");
-			}
-			return couponRepo.save(coupon);
-		} else {
-			throw new CouponSystemException("Failed to add the coupon - coupon not found");
+		if (couponRepo.existsById(coupon.getId())) {
+			throw new CouponSystemException(
+					"Failed to add the coupon - coupon with id: " + coupon.getId() + " already exists in the system.");
 		}
+		if (couponRepo.existsByTitleAndCompany_id(coupon.getTitle(), this.companyId)) {
+			throw new CouponSystemException(
+					"FAILED to add new coupon. coupon title: " + coupon.getTitle() + " already exists in the company.");
+		}
+		if (coupon.getEndDate().isBefore(LocalDate.now())) {
+			throw new CouponSystemException("FAILED to add new coupon. The expiration date of the coupon has passed.");
+		}
+		if (coupon.getAmount() < 0) {
+			throw new CouponSystemException("FAILED to add the coupon - amount cannot be negative.");
+		}
+		return couponRepo.save(coupon);
 	}
 
 	public Coupon updateCoupon(Coupon coupon) {
-		if (coupon != null) {
-			Optional<Coupon> opt = couponRepo.findById(coupon.getId());
-			if (opt.isPresent()) {
-				Coupon couponFromDb = opt.get();
-				if (couponFromDb.getCompanyId() != this.companyId) {
-					throw new CouponSystemException("Failed to update the coupon. the company doesn't own the coupon.");
-				}
-				if (couponRepo.existsByTitleAndCompany_id(coupon.getTitle(),this.companyId)
-						&& !coupon.getTitle().equals(couponFromDb.getTitle())) {
-					throw new CouponSystemException("Failed to update the coupon (id: " + coupon.getId()
-							+ ") coupon title: " + coupon.getTitle() + " already exists in the company.");
-				}
-				if (coupon.getCompanyId() != couponFromDb.getCompanyId()) {
-					throw new CouponSystemException("Failed to update the coupon - cannot change company id.");
-				}
-				if (coupon.getEndDate().isBefore(LocalDate.now())) {
-					throw new CouponSystemException(
-							"Failed to update the coupon. The expiration date of the coupon has passed. ("
-									+ coupon.getEndDate() + ")");
-				}
-				if (coupon.getAmount() < 0) {
-					throw new CouponSystemException("Failed to update the coupon - amount cannot be negative.");
-				}
-				return couponRepo.save(coupon);
-			} else {
-				throw new CouponSystemException(
-						"failed to update the coupon - coupon doesn't exist by id: " + coupon.getId());
+		Optional<Coupon> opt = couponRepo.findById(coupon.getId());
+		if (opt.isPresent()) {
+			Coupon couponFromDb = opt.get();
+			if (couponFromDb.getCompanyId() != this.companyId) {
+				throw new CouponSystemException("Failed to update the coupon. the company doesn't own the coupon.");
 			}
+			if (couponRepo.existsByTitleAndCompany_id(coupon.getTitle(), this.companyId)
+					&& !coupon.getTitle().equals(couponFromDb.getTitle())) {
+				throw new CouponSystemException("Failed to update the coupon (id: " + coupon.getId()
+						+ ") coupon title: " + coupon.getTitle() + " already exists in the company.");
+			}
+			if (coupon.getCompanyId() != couponFromDb.getCompanyId()) {
+				throw new CouponSystemException("Failed to update the coupon - cannot change company id.");
+			}
+			if (coupon.getEndDate().isBefore(LocalDate.now())) {
+				throw new CouponSystemException(
+						"Failed to update the coupon. The expiration date of the coupon has passed. ("
+								+ coupon.getEndDate() + ")");
+			}
+			if (coupon.getAmount() < 0) {
+				throw new CouponSystemException("Failed to update the coupon - amount cannot be negative.");
+			}
+			return couponRepo.save(coupon);
 		} else {
-			throw new CouponSystemException("Failed to update coupon - the given coupon id null");
+			throw new CouponSystemException(
+					"failed to update the coupon - coupon doesn't exist by id: " + coupon.getId());
 		}
 	}
+
+	
 
 	/**
 	 * deletes a coupon and its purchases history
@@ -116,8 +112,9 @@ public class CompanyService extends ClientService {
 			if (couponToDelete.getCompanyId() != this.companyId) {
 				throw new CouponSystemException(
 						"Failed to delete coupon id: " + couponId + " the company doesn't own the coupon.");
-			}
+			}else {				
 			couponRepo.deleteById(couponId);
+			}
 		} else {
 			throw new CouponSystemException("Failed to delete coupon id: " + couponId + " coupon not found.");
 		}
@@ -150,7 +147,7 @@ public class CompanyService extends ClientService {
 	 * @return company details
 	 */
 	public Company getCompanyDetails() {
-		return companyRepo.findById(this.companyId).get();  // the company must exist by this Id.
+		return companyRepo.findById(this.companyId).get(); // the company must exist by this Id.
 	}
 
 }

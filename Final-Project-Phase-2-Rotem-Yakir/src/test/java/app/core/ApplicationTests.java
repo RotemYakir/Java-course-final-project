@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -56,7 +55,6 @@ class ApplicationTests {
 	void loginAdmin() {
 		adminService = (AdminService) loginManager.login("admin@admin.com", "admin", ClientType.ADMIN);
 		Assertions.assertNotNull(adminService);
-//	Assertions.assertDoesNotThrow(null);
 	}
 
 	@Test
@@ -67,11 +65,8 @@ class ApplicationTests {
 		adminService.addCompany(new Company("Dan Hotel", "DanHotel@email.com", "9485721"));
 		adminService.addCompany(new Company("DutyFree", "DutyFree@email.com", "GurionBen48"));
 		adminService.addCompany(new Company("Delete Example", "delete@meLater", "42398"));
-
-		// TODO: the method adminService.getAllCompanies() is not being tested (at this
-		// point) - is that OK?
 		Assertions.assertEquals(5, adminService.getAllCompanies().size());
-		;
+
 	}
 
 	@Test
@@ -79,7 +74,7 @@ class ApplicationTests {
 	void deleteCompany() {
 		adminService.deleteCompany(5);
 		Assertions.assertEquals(4, adminService.getAllCompanies().size());
-		;
+
 	}
 
 	@Test
@@ -94,7 +89,7 @@ class ApplicationTests {
 	@Test
 	@Order(5)
 	void printAllCompanies() {
-		System.out.println("All companies: ");    //might delete - already using this method in addCompany
+		System.out.println("All companies: "); // might delete - already using this method in addCompany
 		for (Company company : adminService.getAllCompanies()) {
 			System.out.println(company);
 			Assertions.assertEquals(Company.class, company.getClass());
@@ -118,22 +113,23 @@ class ApplicationTests {
 		adminService.deleteCustomer(5);
 		Assertions.assertEquals(4, adminService.getAllCompanies().size());
 	}
-	
+
 	@Test
 	@Order(8)
 	void updateCustomer() {
 		Customer currentCustomer1 = adminService.getCustomer(1);
-		Customer updatedCustomer1 = adminService.updateCustomer(new Customer(1, "Billy", "Joel", "newBillyJ@email.com", "389234",currentCustomer1.getCoupons()));
+		Customer updatedCustomer1 = adminService.updateCustomer(
+				new Customer(1, "Billy", "Joel", "newBillyJ@email.com", "389234", currentCustomer1.getCoupons()));
 		Assertions.assertFalse(currentCustomer1.getEmail().equals(updatedCustomer1.getEmail()));
 	}
-	
+
 	@Test
 	@Order(9)
-	void printAllCustomers() {          //might delete - already using this method in addCustomer
+	void printAllCustomers() { // might delete - already using this method in addCustomer
 		System.out.println("All customers: ");
 		for (Customer customer : adminService.getAllCustomers()) {
 			System.out.println(customer);
-			Assertions.assertEquals(Customer.class,customer.getClass());
+			Assertions.assertEquals(Customer.class, customer.getClass());
 		}
 	}
 }

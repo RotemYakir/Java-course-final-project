@@ -61,7 +61,7 @@ public class CustomerService extends ClientService {
 			customer.addCoupon(coupon);
 
 		} else {
-			throw new CouponSystemException("failed to purchase coupon - the coupon doesn't exist.");
+			throw new CouponSystemException("failed to purchase coupon - the coupon doesn't exist by id: "+couponId);
 		}
 	}
 
