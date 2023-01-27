@@ -53,7 +53,7 @@ public class CompanyService extends ClientService {
 			throw new CouponSystemException(
 					"Failed to add the coupon - coupon with id: " + coupon.getId() + " already exists in the system.");
 		}
-		if (couponRepo.existsByTitleAndCompany_id(coupon.getTitle(), this.companyId)) {
+		if (couponRepo.existsByTitleAndCompany_id(coupon.getTitle(), this.companyId)) { //this.companyId)) {
 			throw new CouponSystemException(
 					"FAILED to add new coupon. coupon title: " + coupon.getTitle() + " already exists in the company.");
 		}
@@ -63,6 +63,8 @@ public class CompanyService extends ClientService {
 		if (coupon.getAmount() < 0) {
 			throw new CouponSystemException("FAILED to add the coupon - amount cannot be negative.");
 		}
+//		Company company = companyRepo.findById(this.companyId).get();
+//		company.addCoupon(coupon);
 		return couponRepo.save(coupon);
 	}
 

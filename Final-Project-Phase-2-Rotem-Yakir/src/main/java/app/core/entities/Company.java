@@ -30,7 +30,7 @@ public class Company {
 	private String email;
 	private String password;
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-	private List<Coupon> coupons = new ArrayList<Coupon>();
+	private List<Coupon> coupons;
 	
 
 	public Company(String name, String email, String password) {
@@ -38,6 +38,7 @@ public class Company {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.coupons = new ArrayList<>();
 	}
 
 

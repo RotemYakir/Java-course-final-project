@@ -33,7 +33,7 @@ public class Company {
 	private String password;
 	@JsonIgnore
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-	private List<Coupon> coupons = new ArrayList<Coupon>();
+	private List<Coupon> coupons;
 	
 
 	public Company(String name, String email, String password) {
@@ -41,7 +41,17 @@ public class Company {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.coupons = new ArrayList<>();
 	}
+	
+
+//	public void addCoupon(Coupon coupon) { 
+//		if (coupon != null) {
+//			this.coupons.add(coupon);
+//		}
+//	}
+	
+	
 
 
 

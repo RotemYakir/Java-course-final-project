@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -43,7 +44,9 @@ public class Coupon {
 	@ManyToOne
 	@JoinColumn(name = "company_id")
 	@ToString.Exclude
-	private Company company;
+	private Company company; 
+	@Transient
+	private int companyId;
 	private String title;
 	private String description;
 	@Enumerated(EnumType.STRING)
@@ -58,6 +61,7 @@ public class Coupon {
 	@ManyToMany
 	@JoinTable(name = "customers_vs_coupons", joinColumns = { @JoinColumn(name = "coupon_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "customer_id") })
+	@JsonIgnore
 	@ToString.Exclude
 	private List<Customer> customers;
 
@@ -65,24 +69,20 @@ public class Coupon {
 		ELECTRICITY, RESTAURANT, VACATION, FARMACY, CLOTHING
 	}
 
-	public int getCompanyId() {
-		return this.getCompany().getId();
-	}
 
-	public Coupon(int companyId, Category category, String title, String description, LocalDate startDate,
+	public Coupon( int companyId, String title, String description, Category category, LocalDate startDate,
 			LocalDate endDate, int amount, double price) {
 		super();
+		this.companyId = companyId;
 		this.company=new Company();
-		this.company.setId(companyId); 
-		this.category = category;
+		this.company.setId(this.companyId);
 		this.title = title;
 		this.description = description;
+		this.category = category;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.amount = amount;
 		this.price = price;
 	}
-
-	
 
 }

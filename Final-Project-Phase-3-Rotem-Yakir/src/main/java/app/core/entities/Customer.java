@@ -37,11 +37,11 @@ public class Customer {
 			@JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "coupon_id") })
 	private List<Coupon> coupons;
 
-	public void addCoupon(Coupon coupon) {
-		if (coupon != null) {
-			this.coupons.add(coupon);
-		}
-	}
+//	public void addCoupon(Coupon coupon) {
+//		if (coupon != null) {
+//			this.coupons.add(coupon);
+//		}
+//	}
 
 	public Customer(String firstName, String lastName, String email, String password) {
 		super();
