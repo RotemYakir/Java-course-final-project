@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import app.core.entities.Category;
 import app.core.entities.Company;
 import app.core.entities.Coupon;
-import app.core.entities.Coupon.Category;
 import app.core.entities.Customer;
 import app.core.services.AdminService;
 import app.core.services.CompanyService;
@@ -80,7 +80,7 @@ public class Test implements CommandLineRunner {
 						"10% discount", LocalDate.of(2022, 9, 20), LocalDate.of(2023, 12, 01), 3, 5.99));
 		Coupon perfume = dutyFree
 				.addNewCoupon(new Coupon(dutyFree.getCompanyId(), Category.FARMACY, "Perfume Discount",
-						"70 ILS discount", LocalDate.of(2022, 3, 30), LocalDate.of(2023, 04, 01), 6, 50));
+						"70 ILS discount", LocalDate.of(2022, 3, 30), LocalDate.of(2023, 9, 01), 6, 50));
 		Coupon tShirt = dutyFree
 				.addNewCoupon(new Coupon(dutyFree.getCompanyId(), Category.CLOTHING, "T-shirt Discount",
 						"20 ILS discount", LocalDate.of(2021, 12, 14), LocalDate.of(2023, 05, 30), 10, 19.90));
@@ -88,7 +88,7 @@ public class Test implements CommandLineRunner {
 				.addNewCoupon(new Coupon(dutyFree.getCompanyId(), Category.RESTAURANT, "Icecream Discount",
 						"15% discount", LocalDate.of(2022, 7, 30), LocalDate.of(2023, 07, 28), 4, 7.50));
 		Coupon giftShop = dutyFree.addNewCoupon(new Coupon(dutyFree.getCompanyId(), Category.VACATION,
-				"Gift Shop Coupon", "10% discount", LocalDate.of(2022, 10, 10), LocalDate.of(2023, 02, 10), 7, 20));
+				"Gift Shop Coupon", "10% discount", LocalDate.of(2022, 10, 10), LocalDate.of(2023, 10, 10), 7, 20));
 		Coupon shekemElectric = dutyFree.addNewCoupon(new Coupon(dutyFree.getCompanyId(), Category.ELECTRICITY,
 				"Shekem Electric", "5% discount for mobile phones", LocalDate.of(2020, 11, 05),
 				LocalDate.of(2023, 06, 14), 30, 29.90));

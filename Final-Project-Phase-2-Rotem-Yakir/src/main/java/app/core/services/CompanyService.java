@@ -9,9 +9,9 @@ import javax.transaction.Transactional;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import app.core.entities.Category;
 import app.core.entities.Company;
 import app.core.entities.Coupon;
-import app.core.entities.Coupon.Category;
 import app.core.exceptions.CouponSystemException;
 import lombok.Getter;
 import lombok.Setter;

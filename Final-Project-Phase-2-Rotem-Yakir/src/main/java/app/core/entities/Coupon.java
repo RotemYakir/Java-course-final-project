@@ -58,10 +58,6 @@ public class Coupon {
 	@ToString.Exclude
 	private List<Customer> customers;
 
-	public enum Category {
-		ELECTRICITY, RESTAURANT, VACATION, FARMACY, CLOTHING
-	}
-
 	public int getCompanyId() {
 		return this.getCompany().getId();
 	}
@@ -69,8 +65,8 @@ public class Coupon {
 	public Coupon(int companyId, Category category, String title, String description, LocalDate startDate,
 			LocalDate endDate, int amount, double price) {
 		super();
-		this.company=new Company();
-		this.company.setId(companyId); 
+		this.company = new Company();
+		this.company.setId(companyId);
 		this.category = category;
 		this.title = title;
 		this.description = description;
@@ -79,7 +75,5 @@ public class Coupon {
 		this.amount = amount;
 		this.price = price;
 	}
-
-	
 
 }

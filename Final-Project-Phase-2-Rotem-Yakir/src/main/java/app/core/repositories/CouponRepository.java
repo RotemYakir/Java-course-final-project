@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import app.core.entities.Category;
 import app.core.entities.Coupon;
-import app.core.entities.Coupon.Category;
 
 public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 
@@ -27,7 +27,6 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	List<Coupon> findAllByCustomersIdAndPriceLessThan(int customerId, double price);
 
 	List<Coupon> findAllByEndDateBefore(LocalDate now);
-
 
 
 }
