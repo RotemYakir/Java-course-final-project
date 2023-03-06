@@ -16,6 +16,13 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
+/**
+ * a company entity
+* <p/> includes constructors, getters & setters and toString
+ * @author RotemYakir
+ * 
+ */
 @Data
 @AllArgsConstructor @NoArgsConstructor
 @ToString(exclude = "coupons")
@@ -32,7 +39,10 @@ public class Company {
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
 	private List<Coupon> coupons;
 	
-
+	/**
+	 * constructs a company with no id. used in service where the id is
+	 * generated in the database.
+	 */
 	public Company(String name, String email, String password) {
 		super();
 		this.name = name;

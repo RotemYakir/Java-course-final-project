@@ -38,8 +38,8 @@ public class Coupon {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne
-	@JoinColumn(name = "company_id")
 	@ToString.Exclude
+	@JoinColumn(name = "company_id")
 	private Company company;
 	private String title;
 	private String description;
@@ -58,10 +58,18 @@ public class Coupon {
 	@ToString.Exclude
 	private List<Customer> customers;
 
+	
+	/**
+	 * @return the id of the company that owns the coupon
+	 */
 	public int getCompanyId() {
 		return this.getCompany().getId();
 	}
 
+	/**
+	 * constructs a coupon with no id. Used in service where the id is
+	 * generated in the database.
+	 */
 	public Coupon(int companyId, Category category, String title, String description, LocalDate startDate,
 			LocalDate endDate, int amount, double price) {
 		super();

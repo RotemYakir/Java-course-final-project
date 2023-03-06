@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import app.core.entities.Coupon;
 import app.core.repositories.CouponRepository;
 
+/**
+ * this thread deletes expired coupons (if needed)
+ * 
+ * @author RotemYakir
+ */
 @Service
 public class CouponExpirationDailyJob{
 
@@ -19,6 +24,11 @@ public class CouponExpirationDailyJob{
 
 	private boolean quit;
 
+	/**
+	 * checks if expired coupons exist in the system.
+	 * if they do - deletes them
+	 * scheduled to run once a day.
+	 */
 	@Scheduled(timeUnit = TimeUnit.DAYS, fixedRate = 1)
 	public void run() {
 		while (!quit) {

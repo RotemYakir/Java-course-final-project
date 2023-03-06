@@ -15,10 +15,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
+/**
+ * a customer entity.
+ * <p/> includes constructors, getters & setters and toString
+ * @author RotemYakir
+ *
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "coupons")
 @Entity
 public class Customer {
 
@@ -29,6 +35,7 @@ public class Customer {
 	private String lastName;
 	private String email;
 	private String password;
+	@ToString.Exclude
 	@ManyToMany
 	@JoinTable(name = "customers_vs_coupons", joinColumns = {
 			@JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "coupon_id") })
@@ -40,6 +47,10 @@ public class Customer {
 		}
 	}
 
+	/**
+	 * constructs a customer with no id. Used in service where the id is
+	 * generated in the database.
+	 */
 	public Customer(String firstName, String lastName, String email, String password) {
 		super();
 		this.firstName = firstName;

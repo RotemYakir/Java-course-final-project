@@ -11,6 +11,12 @@ import app.core.entities.Company;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
 
+/**
+ * a client service of administrator, to handle business logic operations/
+ * 
+ * @author RotemYakir
+ *
+ */
 @Service
 @Transactional
 public class AdminService extends ClientService {

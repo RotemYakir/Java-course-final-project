@@ -9,7 +9,11 @@ import app.core.services.ClientService;
 import app.core.services.CompanyService;
 import app.core.services.CustomerService;
 
-
+/**
+ * enables clients to enter the system 
+ * @author RotemYakir
+ *
+ */
 @Service
 public class LoginManager {
 	

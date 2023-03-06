@@ -16,9 +16,16 @@ import app.core.exceptions.CouponSystemException;
 import lombok.Getter;
 import lombok.Setter;
 
+
+/**
+ * a client service of customer, to handle business logic operations/
+ * 
+ * @author RotemYakir
+ *
+ */
 @Getter@Setter
 @Service
-@Scope("prototype")
+@Scope("prototype") // is it needed?
 @Transactional
 public class CustomerService extends ClientService {
 
