@@ -63,8 +63,8 @@ public class CompanyService extends ClientService {
 		if (coupon.getAmount() < 0) {
 			throw new CouponSystemException("FAILED to add the coupon - amount cannot be negative.");
 		}
-//		Company company = companyRepo.findById(this.companyId).get();
-//		company.addCoupon(coupon);
+		Company company = companyRepo.findById(this.companyId).get();
+		company.addCoupon(coupon);
 		return couponRepo.save(coupon);
 	}
 

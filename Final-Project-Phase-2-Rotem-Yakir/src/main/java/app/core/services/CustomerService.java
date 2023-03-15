@@ -25,7 +25,7 @@ import lombok.Setter;
  */
 @Getter@Setter
 @Service
-@Scope("prototype") // is it needed?
+@Scope("prototype")
 @Transactional
 public class CustomerService extends ClientService {
 
@@ -66,7 +66,6 @@ public class CustomerService extends ClientService {
 			}
 			Customer customer = customerRepo.findById(this.customerId).get();
 			customer.addCoupon(coupon);
-
 		} else {
 			throw new CouponSystemException("failed to purchase coupon - the coupon doesn't exist by id: "+couponId);
 		}

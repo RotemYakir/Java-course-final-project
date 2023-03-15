@@ -25,7 +25,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Service
-@Scope("prototype") // is it needed?
+@Scope("prototype")
 @Transactional
 public class CompanyService extends ClientService {
 

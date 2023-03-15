@@ -19,12 +19,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@AllArgsConstructor @NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString(exclude = "coupons")
 @EqualsAndHashCode(of = "id")
 @Entity
 public class Company {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -34,26 +35,21 @@ public class Company {
 	@JsonIgnore
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
 	private List<Coupon> coupons;
-	
 
 	public Company(String name, String email, String password) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.coupons = new ArrayList<>();
+//		this.coupons = new ArrayList<>();
 	}
-	
 
-//	public void addCoupon(Coupon coupon) { 
-//		if (coupon != null) {
-//			this.coupons.add(coupon);
-//		}
-//	}
-	
-	
-
-
-
+	public void addCoupon(Coupon coupon) {
+		if (coupons == null) {
+			this.coupons = new ArrayList<>();
+		}
+		coupon.setCompany(this);
+		this.coupons.add(coupon);
+	}
 
 }

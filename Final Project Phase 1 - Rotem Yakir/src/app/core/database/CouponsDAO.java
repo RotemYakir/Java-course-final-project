@@ -89,7 +89,8 @@ public interface CouponsDAO {
 	void deleteAllPurchasesOfCoupon(int couponId);
 
 	/**
-	 * checks if a purchase of a specific coupon by a specific customer exists in the database
+	 * checks if a purchase of a specific coupon by a specific customer exists in
+	 * the database
 	 * 
 	 * @param customerId the id of the customer
 	 * @param couponId   the id of the coupon
@@ -107,18 +108,18 @@ public interface CouponsDAO {
 	/**
 	 * checks if a specific coupon exists in the company by its title.
 	 * 
-	 * @param companyId the id of the company
+	 * @param companyId   the id of the company
 	 * @param couponTitle the title of the coupon
 	 * @return the result of the check
 	 * @throws CouponSystemException
 	 */
 	boolean isCouponExistsInCompanyByTitle(int companyId, String couponTitle) throws CouponSystemException;
-/**
- * checks if a coupon with matching id exists in the database
- * @param couponId the coupon id
- * @return the result of the check
- */
-boolean isCouponExists(int couponId);
+
+	/**
+	 * checks if a coupon with matching id exists in the database
+	 * 
+	 * @param couponId the coupon id
+	 * @return the result of the check
+	 */
+	boolean isCouponExists(int couponId);
 }
-
-

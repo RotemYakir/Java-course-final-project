@@ -22,7 +22,6 @@ public class CouponExpirationDailyJob{
 	@Autowired
 	CouponRepository couponRepository;
 
-	private boolean quit;
 
 	/**
 	 * checks if expired coupons exist in the system.
@@ -30,8 +29,7 @@ public class CouponExpirationDailyJob{
 	 * scheduled to run once a day.
 	 */
 	@Scheduled(timeUnit = TimeUnit.DAYS, fixedRate = 1)
-	public void run() {
-		while (!quit) {
+	public void task() {
 			System.out.println("\t >>>>> ExpirationDailyJob is searching for expired coupons.");
 			List<Coupon> expiredCoupons = couponRepository.findAllByEndDateBefore(LocalDate.now());
 			if (!expiredCoupons.isEmpty()) {
@@ -45,12 +43,6 @@ public class CouponExpirationDailyJob{
 				System.out.println("\t >>>>> expired coupons up to " + LocalDate.now().toString()
 						+ " - not found. The next check is scheduled to occur tomorrow.");
 			}
-			try {
-				TimeUnit.DAYS.sleep(1);
-			} catch (InterruptedException e) {
-				quit = true;
-			}
 		}
-	}
 
 }
