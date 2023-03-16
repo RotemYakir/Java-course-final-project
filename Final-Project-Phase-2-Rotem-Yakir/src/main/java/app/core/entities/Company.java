@@ -53,7 +53,6 @@ public class Company {
 	
 	/**
 	 * adds a coupon to the list of the company coupons
-	 * @param coupon
 	 */
 	public void addCoupon(Coupon coupon) {
 		if (coupons == null) {

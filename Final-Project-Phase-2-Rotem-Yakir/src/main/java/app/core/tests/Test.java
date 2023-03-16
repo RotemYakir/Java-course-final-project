@@ -15,8 +15,8 @@ import app.core.exceptions.CouponSystemException;
 import app.core.services.AdminService;
 import app.core.services.CompanyService;
 import app.core.services.CustomerService;
+import app.core.services.login.ClientType;
 import app.core.services.login.LoginManager;
-import app.core.services.login.LoginManager.ClientType;
 import app.core.threads.CouponExpirationDailyJob;
 
 @Component
@@ -79,7 +79,7 @@ public class Test implements CommandLineRunner {
 							"70 ILS discount", LocalDate.of(2022, 3, 30), LocalDate.of(2023, 9, 01), 6, 50));
 			Coupon tShirt = dutyFree
 					.addNewCoupon(new Coupon(dutyFree.getCompanyId(), Category.CLOTHING, "T-shirt Discount",
-							"20 ILS discount", LocalDate.of(2021, 12, 14), LocalDate.of(2023, 05, 30), 10, 19.90));
+							"20 ILS discount", LocalDate.of(2021, 12, 14), LocalDate.of(2023, 11, 30), 10, 19.90));
 			Coupon glidaPitsoots = dutyFree
 					.addNewCoupon(new Coupon(dutyFree.getCompanyId(), Category.RESTAURANT, "Icecream Discount",
 							"15% discount", LocalDate.of(2022, 7, 30), LocalDate.of(2023, 07, 28), 4, 7.50));
@@ -87,7 +87,7 @@ public class Test implements CommandLineRunner {
 					"Gift Shop Coupon", "10% discount", LocalDate.of(2022, 10, 10), LocalDate.of(2023, 10, 10), 7, 20));
 			Coupon shekemElectric = dutyFree.addNewCoupon(new Coupon(dutyFree.getCompanyId(), Category.ELECTRICITY,
 					"Shekem Electric", "5% discount for mobile phones", LocalDate.of(2020, 11, 05),
-					LocalDate.of(2023, 06, 14), 30, 29.90));
+					LocalDate.of(2023, 8, 14), 30, 29.90));
 
 			System.out.println("\nDutyFree details: \n" + dutyFree.getCompanyDetails());
 			System.out.println("\nDutyFree coupons: ");
@@ -147,9 +147,9 @@ public class Test implements CommandLineRunner {
 			}
 
 			// admin.deleteCompany(4); // dutyFree id
-			TimeUnit.SECONDS.sleep(10);
 			
 		
+			TimeUnit.SECONDS.sleep(10);
 		} catch (Exception e) {
 			throw new CouponSystemException(e.getMessage());
 		}

@@ -55,10 +55,5 @@ public class LoginManager {
 		}
 	}
 	
-	public enum ClientType {
-		ADMIN,
-		COMPANY,
-		CUSTOMER
-		
-	}
+	
 }

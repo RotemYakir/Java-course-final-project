@@ -1,5 +1,6 @@
 package app.core.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -42,9 +43,10 @@ public class Customer {
 	private List<Coupon> coupons;
 
 	public void addCoupon(Coupon coupon) {
-		if (coupon != null) {
-			this.coupons.add(coupon);
+		if (coupons == null) {
+			this.coupons= new ArrayList<>();
 		}
+		this.coupons.add(coupon);
 	}
 
 	/**

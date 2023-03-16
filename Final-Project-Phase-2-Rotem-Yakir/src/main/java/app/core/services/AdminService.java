@@ -171,7 +171,7 @@ public class AdminService extends ClientService {
 	 * @param customerId
 	 * @throws CouponSystemException if customer is not found by the given id.
 	 */
-	public void deleteCustomer(int customerId) { // TODO check if the method deletes all the purchase history
+	public void deleteCustomer(int customerId) { 
 		if (customerRepo.existsById(customerId)) {
 			customerRepo.deleteById(customerId);
 		} else {

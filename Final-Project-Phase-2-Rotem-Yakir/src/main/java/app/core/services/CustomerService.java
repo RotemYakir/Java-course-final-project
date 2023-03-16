@@ -64,7 +64,7 @@ public class CustomerService extends ClientService {
 			if (coupon.getEndDate().isBefore(LocalDate.now())) {
 				throw new CouponSystemException("Failed to purchase the coupon - coupon is expierd");
 			}
-			Customer customer = customerRepo.findById(this.customerId).get();
+			Customer customer = customerRepo.findById(this.customerId).get(); // the customer must exist by this id
 			customer.addCoupon(coupon);
 		} else {
 			throw new CouponSystemException("failed to purchase coupon - the coupon doesn't exist by id: "+couponId);
