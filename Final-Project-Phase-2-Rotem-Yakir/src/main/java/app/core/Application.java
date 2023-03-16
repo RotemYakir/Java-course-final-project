@@ -1,3 +1,4 @@
+
 package app.core;
 
 import org.springframework.boot.SpringApplication;
