@@ -148,6 +148,7 @@ public class Test implements CommandLineRunner {
 
 			// admin.deleteCompany(4); // dutyFree id
 			TimeUnit.SECONDS.sleep(10);
+			
 		
 		} catch (Exception e) {
 			throw new CouponSystemException(e.getMessage());

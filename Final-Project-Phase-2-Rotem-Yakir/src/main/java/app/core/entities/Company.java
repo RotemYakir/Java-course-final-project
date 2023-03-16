@@ -50,6 +50,17 @@ public class Company {
 		this.password = password;
 		this.coupons = new ArrayList<>();
 	}
-
+	
+	/**
+	 * adds a coupon to the list of the company coupons
+	 * @param coupon
+	 */
+	public void addCoupon(Coupon coupon) {
+		if (coupons == null) {
+			this.coupons = new ArrayList<>();
+		}
+		coupon.setCompany(this);
+		this.coupons.add(coupon);
+	}
 
 }

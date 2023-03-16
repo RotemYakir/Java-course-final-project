@@ -73,8 +73,6 @@ public class Coupon {
 	public Coupon(int companyId, Category category, String title, String description, LocalDate startDate,
 			LocalDate endDate, int amount, double price) {
 		super();
-		this.company = new Company();
-		this.company.setId(companyId);
 		this.category = category;
 		this.title = title;
 		this.description = description;

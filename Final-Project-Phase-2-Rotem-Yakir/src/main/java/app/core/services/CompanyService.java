@@ -69,6 +69,8 @@ public class CompanyService extends ClientService {
 		if (coupon.getAmount() < 0) {
 			throw new CouponSystemException("FAILED to add the coupon - amount cannot be negative.");
 		}
+		Company companyFromDb=companyRepo.findById(this.companyId).get();// the company must exist by this Id.
+		companyFromDb.addCoupon(coupon);
 		return couponRepo.save(coupon);
 	}
 
@@ -111,7 +113,7 @@ public class CompanyService extends ClientService {
 	 * @throws CouponSystemException if the company doesn't own the coupon / coupon
 	 *                               is not found.
 	 */
-	public void deleteCoupon(int couponId) { // TODO check if cascade works
+	public void deleteCoupon(int couponId) {
 		Optional<Coupon> opt = couponRepo.findById(couponId);
 		if (opt.isPresent()) {
 			Coupon couponToDelete = opt.get();
