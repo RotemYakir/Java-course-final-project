@@ -1,5 +1,6 @@
 package app.core.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,6 +18,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
+/**
+ * a customer entity.
+ * <p/> includes constructors, getters & setters and toString
+ * @author RotemYakir
+ *
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,11 +45,12 @@ public class Customer {
 			@JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "coupon_id") })
 	private List<Coupon> coupons;
 
-//	public void addCoupon(Coupon coupon) {
-//		if (coupon != null) {
-//			this.coupons.add(coupon);
-//		}
-//	}
+	public void addCoupon(Coupon coupon) {
+		if (coupons == null) {
+			this.coupons= new ArrayList<>();
+		}
+		this.coupons.add(coupon);
+	}
 
 	public Customer(String firstName, String lastName, String email, String password) {
 		super();

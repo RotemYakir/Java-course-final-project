@@ -45,8 +45,6 @@ public class Coupon {
 	@JoinColumn(name = "company_id")
 	@ToString.Exclude
 	private Company company; 
-	@Transient
-	private int companyId;
 	private String title;
 	private String description;
 	@Enumerated(EnumType.STRING)
@@ -65,17 +63,21 @@ public class Coupon {
 	@ToString.Exclude
 	private List<Customer> customers;
 
-	public enum Category {
-		ELECTRICITY, RESTAURANT, VACATION, FARMACY, CLOTHING
+	
+	/**
+	 * @return the id of the company that owns the coupon
+	 */
+	public int getCompanyId() {
+		return this.getCompany().getId();
 	}
 
-
+	/**
+	 * constructs a coupon with no id. Used in service where the id is
+	 * generated in the database.
+	 */
 	public Coupon( int companyId, String title, String description, Category category, LocalDate startDate,
-			LocalDate endDate, int amount, double price) {
+			LocalDate endDate, int amount, double price,String image) {
 		super();
-		this.companyId = companyId;
-		this.company=new Company();
-		this.company.setId(this.companyId);
 		this.title = title;
 		this.description = description;
 		this.category = category;
@@ -83,6 +85,7 @@ public class Coupon {
 		this.endDate = endDate;
 		this.amount = amount;
 		this.price = price;
+		this.image=image;
 	}
 
 }

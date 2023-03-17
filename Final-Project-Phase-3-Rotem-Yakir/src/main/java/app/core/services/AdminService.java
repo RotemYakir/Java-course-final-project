@@ -11,6 +11,12 @@ import app.core.entities.Company;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
 
+/**
+ * a client service of administrator, to handle business logic operations/
+ * 
+ * @author RotemYakir
+ *
+ */
 @Service
 @Transactional
 public class AdminService extends ClientService {
@@ -165,7 +171,7 @@ public class AdminService extends ClientService {
 	 * @param customerId
 	 * @throws CouponSystemException if customer is not found by the given id.
 	 */
-	public void deleteCustomer(int customerId) { // TODO check if the method deletes all the purchase history
+	public void deleteCustomer(int customerId) { 
 		if (customerRepo.existsById(customerId)) {
 			customerRepo.deleteById(customerId);
 		} else {

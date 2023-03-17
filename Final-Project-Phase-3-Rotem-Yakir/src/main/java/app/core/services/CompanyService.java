@@ -9,13 +9,19 @@ import javax.transaction.Transactional;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import app.core.entities.Category;
 import app.core.entities.Company;
 import app.core.entities.Coupon;
-import app.core.entities.Coupon.Category;
 import app.core.exceptions.CouponSystemException;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * a client service of company, to handle business logic operations/
+ * 
+ * @author RotemYakir
+ *
+ */
 @Getter
 @Setter
 @Service
@@ -53,7 +59,7 @@ public class CompanyService extends ClientService {
 			throw new CouponSystemException(
 					"Failed to add the coupon - coupon with id: " + coupon.getId() + " already exists in the system.");
 		}
-		if (couponRepo.existsByTitleAndCompany_id(coupon.getTitle(), this.companyId)) { //this.companyId)) {
+		if (couponRepo.existsByTitleAndCompany_id(coupon.getTitle(), this.companyId)) {
 			throw new CouponSystemException(
 					"FAILED to add new coupon. coupon title: " + coupon.getTitle() + " already exists in the company.");
 		}
@@ -63,8 +69,8 @@ public class CompanyService extends ClientService {
 		if (coupon.getAmount() < 0) {
 			throw new CouponSystemException("FAILED to add the coupon - amount cannot be negative.");
 		}
-		Company company = companyRepo.findById(this.companyId).get();
-		company.addCoupon(coupon);
+		Company companyFromDb=companyRepo.findById(this.companyId).get();// the company must exist by this Id.
+		companyFromDb.addCoupon(coupon);
 		return couponRepo.save(coupon);
 	}
 
@@ -107,7 +113,7 @@ public class CompanyService extends ClientService {
 	 * @throws CouponSystemException if the company doesn't own the coupon / coupon
 	 *                               is not found.
 	 */
-	public void deleteCoupon(int couponId) { // TODO check if cascade works
+	public void deleteCoupon(int couponId) {
 		Optional<Coupon> opt = couponRepo.findById(couponId);
 		if (opt.isPresent()) {
 			Coupon couponToDelete = opt.get();

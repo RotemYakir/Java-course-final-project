@@ -9,13 +9,19 @@ import javax.transaction.Transactional;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import app.core.entities.Category;
 import app.core.entities.Coupon;
-import app.core.entities.Coupon.Category;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * a client service of customer, to handle business logic operations/
+ * 
+ * @author RotemYakir
+ *
+ */
 @Getter@Setter
 @Service
 @Scope("prototype")
@@ -57,9 +63,8 @@ public class CustomerService extends ClientService {
 			if (coupon.getEndDate().isBefore(LocalDate.now())) {
 				throw new CouponSystemException("Failed to purchase the coupon - coupon is expierd");
 			}
-//			Customer customer = customerRepo.findById(this.customerId).get();
-//			customer.addCoupon(coupon);
-
+			Customer customer = customerRepo.findById(this.customerId).get(); // the customer must exist by this id
+			customer.addCoupon(coupon);
 		} else {
 			throw new CouponSystemException("failed to purchase coupon - the coupon doesn't exist by id: "+couponId);
 		}
