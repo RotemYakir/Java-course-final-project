@@ -65,6 +65,7 @@ public class CustomerService extends ClientService {
 			}
 			Customer customer = customerRepo.findById(this.customerId).get(); // the customer must exist by this id
 			customer.addCoupon(coupon);
+			coupon.setAmount(coupon.getAmount()-1);
 		} else {
 			throw new CouponSystemException("failed to purchase coupon - the coupon doesn't exist by id: "+couponId);
 		}
