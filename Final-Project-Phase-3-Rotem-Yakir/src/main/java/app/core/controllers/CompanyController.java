@@ -65,12 +65,12 @@ public class CompanyController {
 
 	@GetMapping("get-all-coupons")
 	public List<Coupon> getAllCoupons() {
-		return service.getAllCoupons();
+		return service.getAllCoupons(); // TODO do i need try&catch here? if yes- which http status error do i throw?
 	}
 
 	@GetMapping("get-coupons-by-category")
 	public List<Coupon> getCouponsByCategory(Category category) {
-		return service.getCouponsByCategory(category);
+		return service.getCouponsByCategory(category);  // TODO do i need try&catch here? if yes- which http status error do i throw?
 	}
 
 }
