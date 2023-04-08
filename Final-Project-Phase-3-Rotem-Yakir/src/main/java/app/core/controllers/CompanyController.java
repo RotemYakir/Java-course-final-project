@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import app.core.entities.Category;
+import app.core.entities.Company;
 import app.core.entities.Coupon;
 import app.core.exceptions.CouponSystemException;
 import app.core.services.CompanyService;
@@ -80,6 +81,24 @@ public class CompanyController {
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
+	}
+	
+	@GetMapping("/get-coupons-max-price")
+	public List<Coupon> getCouponsUpToMaxPrice(double price, int companyId) {
+		try {
+			return service.getCouponsUpToMaxPrice(price, companyId);
+		} catch (CouponSystemException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
+	
+	@GetMapping("/get-details")
+	public Company getCustomerDetails(int companyId) {
+		try {
+			return service.getCompanyDetails(companyId);
+		} catch (CouponSystemException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		} 
 	}
 
 }

@@ -79,8 +79,7 @@ public class CompanyService extends ClientService {
 	 *                               negative.
 	 */
 	public Coupon updateCoupon(Coupon coupon, int companyId) {
-		Optional<Company> optCompany = companyRepo.findById(companyId);
-		if (optCompany.isEmpty()) {
+		if (!companyRepo.existsById(companyId)) {
 			throw new CouponSystemException(
 					"Failed to update the coupon. a company with id: " + companyId + " doesn't exist");
 		}
@@ -115,6 +114,7 @@ public class CompanyService extends ClientService {
 
 	/**
 	 * deletes a coupon and its purchases history
+	 * 
 	 * @throws CouponSystemException if the company doesn't own the coupon / coupon
 	 *                               is not found.
 	 */
@@ -178,12 +178,9 @@ public class CompanyService extends ClientService {
 	 * @throws CouponSystemException if the company doesn't exist by the inserted id
 	 */
 	public Company getCompanyDetails(int companyId) {
-		if (companyRepo.existsById(companyId)) {
-			return companyRepo.findById(companyId).get();
-		} else {
-			throw new CouponSystemException(
-					"Failed to get the company's details. a company with id: " + companyId + " doesn't exist");
-		}
+		return companyRepo.findById(companyId).orElseThrow(() -> new CouponSystemException(
+				"Failed to get the company's details. a company with id: " + companyId + " doesn't exist"));
+
 	}
 
 }
