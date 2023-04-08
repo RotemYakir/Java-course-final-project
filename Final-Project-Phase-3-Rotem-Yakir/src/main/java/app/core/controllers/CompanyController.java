@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -36,41 +37,49 @@ public class CompanyController {
 		}
 	}
 
-	@PostMapping("/add-coupon") // DOESNT WORK!!!
-	public Coupon addNewCoupon(@RequestBody Coupon coupon) {
+	@PostMapping("/add-coupon")
+	public Coupon addNewCoupon(@RequestBody Coupon coupon,@RequestParam int companyId) {
 		try {
-			return service.addNewCoupon(coupon);
+			return service.addNewCoupon(coupon,companyId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 
 	@PutMapping("/update-coupon")
-	public Coupon updateCoupon(@RequestBody Coupon coupon) {
+	public Coupon updateCoupon(@RequestBody Coupon coupon,@RequestParam int companyId) {
 		try {
-			return service.updateCoupon(coupon);
+			return service.updateCoupon(coupon,companyId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 
 	@DeleteMapping("delete-coupon")
-	public void deleteCoupon(int couponId) {
+	public void deleteCoupon(int couponId,int companyId) {
 		try {
-			service.deleteCoupon(couponId);
+			service.deleteCoupon(couponId,companyId);
 		} catch (CouponSystemException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 
 	@GetMapping("get-all-coupons")
-	public List<Coupon> getAllCoupons() {
-		return service.getAllCoupons(); // TODO do i need try&catch here? if yes- which http status error do i throw?
+	public List<Coupon> getAllCoupons(int companyId) {
+		try {
+			return service.getAllCoupons(companyId); 			
+		} catch (CouponSystemException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
 	}
 
 	@GetMapping("get-coupons-by-category")
-	public List<Coupon> getCouponsByCategory(Category category) {
-		return service.getCouponsByCategory(category);  // TODO do i need try&catch here? if yes- which http status error do i throw?
+	public List<Coupon> getCouponsByCategory(Category category, int companyId) {
+		try {
+			return service.getCouponsByCategory(category,companyId); 			
+		} catch (CouponSystemException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
 	}
 
 }
