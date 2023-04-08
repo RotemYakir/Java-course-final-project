@@ -20,6 +20,7 @@ public class LoginManager {
 	@Autowired
 	private ApplicationContext ctx;
 	
+	
 	/**
 	 * compares email and password given by the client to the email and password
 	 * stored in the system, and returning a fitting client service if login succeeded.
