@@ -18,6 +18,7 @@ public class JwtUtilCompany extends JwtUtilAbstract<Company, Integer> {
 		claims.put("name", user.getName());
 		claims.put("email", user.getEmail());
 		// TODO check if i should add the coupons here
+		
 		return this.createToken(claims, user.getId());
 	}
 
