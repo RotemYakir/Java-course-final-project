@@ -2,6 +2,7 @@ package app.core.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import app.core.login.auth.UserCredentials;
 import app.core.repositories.CompanyRepository;
 import app.core.repositories.CouponRepository;
 import app.core.repositories.CustomerRepository;
@@ -22,7 +23,13 @@ public abstract class ClientService  {
 	@Autowired
 	protected CouponRepository couponRepo;
 
-	public abstract boolean login(String email, String password);
+
+	/**
+	 * compares email and password given by the company to the email and password
+	 * stored in the database
+	 */
+	public abstract String login(UserCredentials credentials);
+	
 
 }
 

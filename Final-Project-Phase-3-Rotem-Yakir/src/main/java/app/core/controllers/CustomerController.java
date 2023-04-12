@@ -14,7 +14,9 @@ import app.core.entities.Category;
 import app.core.entities.Coupon;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
+import app.core.login.auth.UserCredentials;
 import app.core.services.CustomerService;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/coupon-system/customer")
@@ -24,9 +26,9 @@ public class CustomerController {
 	CustomerService service;
 
 	@PutMapping("/login")
-	public boolean login(String email, String password) {
+	public String login(@RequestBody UserCredentials credentials) {
 		try {
-			return service.login(email, password);
+			return service.login(credentials);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
 		}

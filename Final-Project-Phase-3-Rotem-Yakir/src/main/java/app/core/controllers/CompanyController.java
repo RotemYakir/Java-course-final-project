@@ -18,6 +18,7 @@ import app.core.entities.Category;
 import app.core.entities.Company;
 import app.core.entities.Coupon;
 import app.core.exceptions.CouponSystemException;
+import app.core.login.auth.UserCredentials;
 import app.core.services.CompanyService;
 
 @RequestMapping("/coupon-system/company")
@@ -30,9 +31,9 @@ public class CompanyController {
 	// TODO create a login method that returns a token.
 
 	@PutMapping("/login")
-	public boolean login(String email, String password) {
+	public String login(@RequestBody UserCredentials credentials ) {
 		try {
-			return service.login(email, password);
+			return service.login(credentials);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
 		}

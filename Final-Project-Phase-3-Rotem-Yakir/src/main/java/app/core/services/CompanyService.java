@@ -6,12 +6,15 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.core.entities.Category;
 import app.core.entities.Company;
 import app.core.entities.Coupon;
 import app.core.exceptions.CouponSystemException;
+import app.core.login.auth.JwtUtilCompany;
+import app.core.login.auth.UserCredentials;
 
 /**
  * a client service of company, to handle business logic operations/
@@ -24,17 +27,23 @@ import app.core.exceptions.CouponSystemException;
 @Transactional
 public class CompanyService extends ClientService {
 
+	@Autowired
+	JwtUtilCompany jwtUtil;
+	
 	/**
 	 * compares email and password given by the company to the email and password
 	 * stored in the database
 	 */
 	@Override
-	public boolean login(String email, String password) {
-		Optional<Company> opt = companyRepo.findByEmailAndPassword(email, password);
+	public String login(UserCredentials credentials) {
+		Optional<Company> opt = companyRepo.findByEmailAndPassword(credentials.getEmail(), credentials.getPassword());
 		if (opt.isPresent()) {
-//			this.companyId = opt.get().getId();
+			String token = jwtUtil.generateToken(opt.get());
+			return token;
 		}
-		return opt.isPresent();
+		else {
+			throw new CouponSystemException("Login failed: email or password are incorrect.");
+		}
 	}
 
 	/**

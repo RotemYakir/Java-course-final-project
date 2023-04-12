@@ -12,6 +12,7 @@ import app.core.entities.Category;
 import app.core.entities.Coupon;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
+import app.core.login.auth.UserCredentials;
 
 /**
  * a client service of customer, to handle business logic operations/
@@ -28,12 +29,12 @@ public class CustomerService extends ClientService {
 	 * stored in the database
 	 */
 	@Override
-	public boolean login(String email, String password) {
-		Optional<Customer> opt = customerRepo.findByEmailAndPassword(email, password);
+	public String login(UserCredentials credentials) {
+		Optional<Customer> opt = customerRepo.findByEmailAndPassword(credentials.getEmail(), credentials.getPassword());
 		if (opt.isPresent()) {
 //			this.customerId = opt.get().getId();
 		}
-		return opt.isPresent();
+		return null;
 	}
 
 	/**

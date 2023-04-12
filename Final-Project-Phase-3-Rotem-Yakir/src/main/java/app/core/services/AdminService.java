@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import app.core.entities.Company;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
+import app.core.login.auth.UserCredentials;
 
 /**
  * a client service of administrator, to handle business logic operations/
@@ -29,8 +30,11 @@ public class AdminService extends ClientService {
 	 * and password which are set in this class
 	 */
 	@Override
-	public boolean login(String email, String password) {
-		return this.email.equals(email) && this.password.equals(password);
+	public String login(UserCredentials credentials) {
+		if (this.email.equals(credentials.getEmail()) && this.password.equals(credentials.getPassword())){
+			// HOW DO I RETURN A TOKEN FOR ADMIN USER?
+		}
+		return null;
 	}
 
 	/**
