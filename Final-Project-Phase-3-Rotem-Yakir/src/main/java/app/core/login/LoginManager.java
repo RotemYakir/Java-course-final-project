@@ -20,12 +20,13 @@ public class LoginManager {
 	 * compares email and password given by the client to the email and password
 	 * stored in the system, and returning a fitting client service if login succeeded.
 	 */
+	
 //	public ClientService login(String email, String password, ClientType clientType) {
 //		switch (clientType) {
 //		case ADMIN: {
 //			AdminService client =  ctx.getBean(AdminService.class);
 //			if (client.login(email, password)) {
-//				return client;
+//				return client;S
 //			} else {
 //				return null;
 //			}
