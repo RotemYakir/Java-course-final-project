@@ -5,30 +5,30 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import app.core.entities.Company;
+import app.core.login.ClientType;
+import app.core.login.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 
 @Component
-public class JwtUtilCompany extends JwtUtilAbstract<Company, Integer> {
+public class JwtUtilUser extends JwtUtilAbstract<User, Integer> {
 
 	@Override
-	public String generateToken(Company user) {
+	public String generateToken(User user) {
 		Map<String, Object> claims = new HashMap<>();
-		claims.put("name", user.getName());
 		claims.put("email", user.getEmail());
-		// TODO check if i should add the coupons here
+		claims.put("clientType", user.getClientType());
 		return this.createToken(claims, user.getId());
 	}
 
 	@Override
-	public Company extractUser(String token) throws JwtException {
+	public User extractUser(String token) throws JwtException {
 		Claims claims = this.extractAllClaims(token);
 		int id = Integer.parseInt(claims.getSubject());
-		String name = (String) claims.get("name");
+		ClientType clientType = (ClientType) claims.get("clientType");
 		String email = (String) claims.get("email");
-		Company company = new Company(id, name, email, null, null);
-		return company;
+		User user = new User(id,email,clientType);
+		return user;
 
 	}
 

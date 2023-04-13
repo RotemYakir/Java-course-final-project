@@ -1,4 +1,4 @@
-package app.core.login.auth;
+package app.core.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserCredentials {
-
 
 	private String email;
 	private String password;

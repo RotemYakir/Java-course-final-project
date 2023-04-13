@@ -18,7 +18,7 @@ import app.core.entities.Category;
 import app.core.entities.Company;
 import app.core.entities.Coupon;
 import app.core.exceptions.CouponSystemException;
-import app.core.login.auth.UserCredentials;
+import app.core.login.UserCredentials;
 import app.core.services.CompanyService;
 
 @RequestMapping("/coupon-system/company")
@@ -28,9 +28,8 @@ public class CompanyController {
 	@Autowired
 	CompanyService service;
 
-	// TODO create a login method that returns a token.
 
-	@PutMapping("/login")
+	@PostMapping("/login")
 	public String login(@RequestBody UserCredentials credentials ) {
 		try {
 			return service.login(credentials);

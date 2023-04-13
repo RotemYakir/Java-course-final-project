@@ -13,8 +13,10 @@ import app.core.entities.Category;
 import app.core.entities.Company;
 import app.core.entities.Coupon;
 import app.core.exceptions.CouponSystemException;
-import app.core.login.auth.JwtUtilCompany;
-import app.core.login.auth.UserCredentials;
+import app.core.login.ClientType;
+import app.core.login.User;
+import app.core.login.UserCredentials;
+import app.core.login.auth.JwtUtilUser;
 
 /**
  * a client service of company, to handle business logic operations/
@@ -28,7 +30,7 @@ import app.core.login.auth.UserCredentials;
 public class CompanyService extends ClientService {
 
 	@Autowired
-	JwtUtilCompany jwtUtil;
+	JwtUtilUser jwtUtil;
 	
 	/**
 	 * compares email and password given by the company to the email and password
@@ -38,10 +40,10 @@ public class CompanyService extends ClientService {
 	public String login(UserCredentials credentials) {
 		Optional<Company> opt = companyRepo.findByEmailAndPassword(credentials.getEmail(), credentials.getPassword());
 		if (opt.isPresent()) {
-			String token = jwtUtil.generateToken(opt.get());
+			User user = new User(opt.get().getId(),opt.get().getEmail(),ClientType.COMPANY);
+			String token = jwtUtil.generateToken(user);
 			return token;
-		}
-		else {
+		}else {
 			throw new CouponSystemException("Login failed: email or password are incorrect.");
 		}
 	}

@@ -55,7 +55,7 @@ public abstract class JwtUtilAbstract<T, ID> {
 	 */
 	protected String createToken(Map<String, Object> claims, ID subject) {
 		JwtBuilder jwtBuilder = Jwts.builder();
-		Instant now = Instant.now(); // now
+		Instant now = Instant.now(); 
 		Instant exp = now.plus(this.unitsNumber, this.chronoUnit);
 
 		String token = jwtBuilder.setClaims(claims).setSubject(subject.toString()).setIssuedAt(Date.from(now))

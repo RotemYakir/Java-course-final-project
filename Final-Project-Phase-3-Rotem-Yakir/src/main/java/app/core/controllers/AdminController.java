@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import app.core.entities.Company;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
+import app.core.login.UserCredentials;
 import app.core.services.AdminService;
 
 @RequestMapping("/coupon-system/admin")
@@ -26,7 +27,14 @@ public class AdminController {
 	@Autowired
 	AdminService service;
 
-	// TODO create a login method that returns a token.
+	@PostMapping("/login")
+	public String login(@RequestBody UserCredentials credentials ) {
+		try {
+			return service.login(credentials);
+		} catch (CouponSystemException e) {
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+		}
+	}
 
 	@PostMapping("/add-company")
 	public Company addCompany(@RequestBody Company company) {

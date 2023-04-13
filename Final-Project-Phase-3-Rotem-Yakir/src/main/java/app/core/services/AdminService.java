@@ -5,12 +5,16 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.core.entities.Company;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
-import app.core.login.auth.UserCredentials;
+import app.core.login.ClientType;
+import app.core.login.User;
+import app.core.login.UserCredentials;
+import app.core.login.auth.JwtUtilUser;
 
 /**
  * a client service of administrator, to handle business logic operations/
@@ -25,16 +29,24 @@ public class AdminService extends ClientService {
 	private final String email = "admin@admin.com";
 	private final String password = "admin";
 
+	@Autowired
+	JwtUtilUser jwtUtil;
+	
 	/**
 	 * compares email and password given by the administrator to the permanent email
-	 * and password which are set in this class
+	 * and password which are set in this class.
+	 * 
+	 * the id of the user is 0 because there's only one admin member who is always the same one (and not one from the database).
 	 */
 	@Override
 	public String login(UserCredentials credentials) {
 		if (this.email.equals(credentials.getEmail()) && this.password.equals(credentials.getPassword())){
-			// HOW DO I RETURN A TOKEN FOR ADMIN USER?
+			User user = new User(0,this.email,ClientType.ADMIN);  
+			String token = jwtUtil.generateToken(user);
+			return token;
+		}else {
+			throw new CouponSystemException("Login failed: email or password are incorrect.");
 		}
-		return null;
 	}
 
 	/**
