@@ -3,6 +3,7 @@ package app.core.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +39,7 @@ public class CompanyController {
 		}
 	}
 
-	@PostMapping("/add-coupon")
+	@PostMapping(path = "/add-coupon",headers = HttpHeaders.AUTHORIZATION)
 	public Coupon addNewCoupon(@RequestBody Coupon coupon,@RequestParam int companyId) {
 		try {
 			return service.addNewCoupon(coupon,companyId);
@@ -47,7 +48,7 @@ public class CompanyController {
 		}
 	}
 
-	@PutMapping("/update-coupon")
+	@PutMapping(path = "/update-coupon",headers = HttpHeaders.AUTHORIZATION)
 	public Coupon updateCoupon(@RequestBody Coupon coupon,@RequestParam int companyId) {
 		try {
 			return service.updateCoupon(coupon,companyId);
@@ -56,7 +57,7 @@ public class CompanyController {
 		}
 	}
 
-	@DeleteMapping("delete-coupon")
+	@DeleteMapping(path="delete-coupon", headers = HttpHeaders.AUTHORIZATION)
 	public void deleteCoupon(int couponId,int companyId) {
 		try {
 			service.deleteCoupon(couponId,companyId);
@@ -65,7 +66,7 @@ public class CompanyController {
 		}
 	}
 
-	@GetMapping("get-all-coupons")
+	@GetMapping(path =  "get-all-coupons",headers = HttpHeaders.AUTHORIZATION)
 	public List<Coupon> getAllCoupons(int companyId) {
 		try {
 			return service.getAllCoupons(companyId); 			
@@ -74,7 +75,7 @@ public class CompanyController {
 		}
 	}
 
-	@GetMapping("get-coupons-by-category")
+	@GetMapping(path =  "get-coupons-by-category",headers = HttpHeaders.AUTHORIZATION)
 	public List<Coupon> getCouponsByCategory(Category category, int companyId) {
 		try {
 			return service.getCouponsByCategory(category,companyId); 			
@@ -83,7 +84,7 @@ public class CompanyController {
 		}
 	}
 	
-	@GetMapping("/get-coupons-max-price")
+	@GetMapping(path ="/get-coupons-max-price",headers = HttpHeaders.AUTHORIZATION)
 	public List<Coupon> getCouponsUpToMaxPrice(double price, int companyId) {
 		try {
 			return service.getCouponsUpToMaxPrice(price, companyId);
@@ -92,7 +93,7 @@ public class CompanyController {
 		}
 	}
 	
-	@GetMapping("/get-details")
+	@GetMapping(path = "/get-details",headers = HttpHeaders.AUTHORIZATION)
 	public Company getCustomerDetails(int companyId) {
 		try {
 			return service.getCompanyDetails(companyId);

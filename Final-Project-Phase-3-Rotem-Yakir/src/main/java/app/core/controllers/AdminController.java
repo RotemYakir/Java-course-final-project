@@ -3,6 +3,7 @@ package app.core.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,7 @@ public class AdminController {
 	AdminService service;
 
 	@PostMapping("/login")
-	public String login(@RequestBody UserCredentials credentials ) {
+	public String login(@RequestBody UserCredentials credentials) {
 		try {
 			return service.login(credentials);
 		} catch (CouponSystemException e) {
@@ -36,7 +37,7 @@ public class AdminController {
 		}
 	}
 
-	@PostMapping("/add-company")
+	@PostMapping(path = "/add-company", headers = HttpHeaders.AUTHORIZATION)
 	public Company addCompany(@RequestBody Company company) {
 		try {
 			return service.addCompany(company);
@@ -45,7 +46,7 @@ public class AdminController {
 		}
 	}
 
-	@PostMapping("/add-customer")
+	@PostMapping(path = "/add-customer", headers = HttpHeaders.AUTHORIZATION)
 	public Customer addCustomer(@RequestBody Customer customer) {
 		try {
 			return service.addCustomer(customer);
@@ -54,16 +55,16 @@ public class AdminController {
 		}
 	}
 
-	@PutMapping("/update-company")
+	@PutMapping(path = "/update-company", headers = HttpHeaders.AUTHORIZATION)
 	public Company updateCompany(@RequestBody Company company) {
 		try {
 			return service.updateCompany(company);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
+	   	}
 	}
 
-	@PutMapping("/update-customer")
+	@PutMapping(path = "/update-customer", headers = HttpHeaders.AUTHORIZATION)
 	public Customer updateCustomer(@RequestBody Customer customer) {
 		try {
 			return service.updateCustomer(customer);
@@ -72,7 +73,7 @@ public class AdminController {
 		}
 	}
 
-	@GetMapping("/get-company/{companyId}")
+	@GetMapping(path = "/get-company/{companyId}", headers = HttpHeaders.AUTHORIZATION)
 	public Company getCompany(@PathVariable int companyId) {
 		try {
 			return service.getCompany(companyId);
@@ -81,7 +82,7 @@ public class AdminController {
 		}
 	}
 
-	@GetMapping("/get-customer/{customerId}")
+	@GetMapping(path = "/get-customer/{customerId}", headers = HttpHeaders.AUTHORIZATION)
 	public Customer getCustomer(@PathVariable int customerId) {
 		try {
 			return service.getCustomer(customerId);
@@ -90,7 +91,7 @@ public class AdminController {
 		}
 	}
 
-	@DeleteMapping("/delete-company")
+	@DeleteMapping(path = "/delete-company", headers = HttpHeaders.AUTHORIZATION)
 	public void deleteCompany(int companyId) {
 		try {
 			service.deleteCompany(companyId);
@@ -99,7 +100,7 @@ public class AdminController {
 		}
 	}
 
-	@DeleteMapping("/delete-customer")
+	@DeleteMapping(path = "/delete-customer", headers = HttpHeaders.AUTHORIZATION)
 	public void deleteCustomer(int customerId) {
 		try {
 			service.deleteCustomer(customerId);
@@ -107,14 +108,16 @@ public class AdminController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 	}
-	
-	@GetMapping("/get-all-companies")
-	public List<Company> getAllCompanies(){    
-			return service.getAllCompanies();
+
+	@GetMapping(path = "/get-all-companies", headers = HttpHeaders.AUTHORIZATION)
+	public List<Company> getAllCompanies() {
+		return service.getAllCompanies();
 	}
-	@GetMapping("/get-all-customers")
-	public List<Customer> getAllCustomers(){ 
+
+	@GetMapping(path = "/get-all-customers", headers = HttpHeaders.AUTHORIZATION)
+	public List<Customer> getAllCustomers() {
 		return service.getAllCustomers();
 	}
 
+	
 }

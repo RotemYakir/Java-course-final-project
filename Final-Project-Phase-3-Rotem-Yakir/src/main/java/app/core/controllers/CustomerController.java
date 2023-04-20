@@ -3,6 +3,7 @@ package app.core.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +37,7 @@ public class CustomerController {
 		}
 	}
 
-	@PutMapping("/purchase-coupon")
+	@PutMapping(path = "/purchase-coupon", headers = HttpHeaders.AUTHORIZATION)
 	public void purchaseCoupon(int couponId, int customerId) {
 		try {
 			service.purchaseCoupon(couponId, customerId);
@@ -45,7 +46,7 @@ public class CustomerController {
 		}
 	}
 
-	@GetMapping("/get-coupons")
+	@GetMapping(path = "/get-coupons", headers = HttpHeaders.AUTHORIZATION)
 	public List<Coupon> getAllCoupons(int customerId) {
 		try {
 			return service.getAllCoupons(customerId);
@@ -54,7 +55,7 @@ public class CustomerController {
 		}
 	}
 
-	@GetMapping("/get-coupons-by-category")
+	@GetMapping(path = "/get-coupons-by-category", headers = HttpHeaders.AUTHORIZATION)
 	public List<Coupon> getCouponsByCategory(Category category, int customerId) {
 		try {
 			return service.getCouponsByCategory(category, customerId);
@@ -63,7 +64,7 @@ public class CustomerController {
 		}
 	}
 
-	@GetMapping("/get-coupons-max-price")
+	@GetMapping(path = "/get-coupons-max-price", headers = HttpHeaders.AUTHORIZATION)
 	public List<Coupon> getCouponsUpToMaxPrice(double price, int customerId) {
 		try {
 			return service.getCouponsUpToMaxPrice(price, customerId);
@@ -71,14 +72,14 @@ public class CustomerController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
-	
-	@GetMapping("/get-details")
+
+	@GetMapping(path = "/get-details", headers = HttpHeaders.AUTHORIZATION)
 	public Customer getCustomerDetails(int customerId) {
 		try {
 			return service.getCustomerDetails(customerId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
-		} 
+		}
 	}
-	
+
 }
