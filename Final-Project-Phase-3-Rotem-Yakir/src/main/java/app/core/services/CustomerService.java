@@ -9,14 +9,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.core.auth.ClientType;
+import app.core.auth.JwtUtilUser;
+import app.core.auth.User;
+import app.core.auth.UserCredentials;
 import app.core.entities.Category;
 import app.core.entities.Coupon;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
-import app.core.login.auth.ClientType;
-import app.core.login.auth.JwtUtilUser;
-import app.core.login.auth.User;
-import app.core.login.auth.UserCredentials;
 
 /**
  * a client service of customer, to handle business logic operations/

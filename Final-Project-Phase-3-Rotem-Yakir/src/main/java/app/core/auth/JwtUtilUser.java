@@ -1,4 +1,4 @@
-package app.core.login.auth;
+package app.core.auth;
 
 import java.util.HashMap;
 import java.util.Map;
