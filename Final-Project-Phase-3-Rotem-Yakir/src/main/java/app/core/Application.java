@@ -6,7 +6,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import app.core.auth.AuthenticationFilter;
+import app.core.auth.filters.AuthenticationFilter;
+import app.core.auth.jwt.JwtUtilUser;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -22,9 +23,9 @@ public class Application {
 	}
 
 	@Bean
-	FilterRegistrationBean<AuthenticationFilter> authenticationFilter(){
+	FilterRegistrationBean<AuthenticationFilter> authenticationFilter(JwtUtilUser jwtUtilUser){
 		FilterRegistrationBean<AuthenticationFilter> regBean = new FilterRegistrationBean<>();
-		regBean.setFilter(new AuthenticationFilter());
+		regBean.setFilter(new AuthenticationFilter(jwtUtilUser));
 		regBean.addUrlPatterns("/api/*");
 		return regBean;
 	}

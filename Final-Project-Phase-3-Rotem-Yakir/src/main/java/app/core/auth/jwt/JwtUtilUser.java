@@ -25,9 +25,9 @@ public class JwtUtilUser extends JwtUtilAbstract<User, Integer> {
 	public User extractUser(String token) throws JwtException {
 		Claims claims = this.extractAllClaims(token);
 		int id = Integer.parseInt(claims.getSubject());
-		ClientType clientType = (ClientType) claims.get("clientType");
+		ClientType	clientType = ClientType.valueOf(claims.get("clientType").toString());
 		String email = (String) claims.get("email");
-		User user = new User(id,email,clientType);
+		User user = new User(id, email, clientType);
 		return user;
 
 	}
