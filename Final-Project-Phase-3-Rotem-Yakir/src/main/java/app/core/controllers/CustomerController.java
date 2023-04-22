@@ -7,14 +7,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import app.core.auth.client.UserCredentials;
 import app.core.entities.Category;
 import app.core.entities.Coupon;
 import app.core.entities.Customer;
@@ -29,15 +26,15 @@ public class CustomerController {
 	@Autowired
 	CustomerService service;
 
-	@PostMapping("/login")
-	public String login(@RequestBody UserCredentials credentials) {
-		System.out.println(credentials);
-		try {
-			return service.login(credentials);
-		} catch (CouponSystemException e) {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-		}
-	}
+//	@PostMapping("/login")
+//	public String login(@RequestBody UserCredentials credentials) {
+//		System.out.println(credentials);
+//		try {
+//			return service.login(credentials);
+//		} catch (CouponSystemException e) {
+//			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+//		}
+//	}
 
 	@PutMapping(path = "/purchase-coupon", headers = HttpHeaders.AUTHORIZATION)
 	public void purchaseCoupon(int couponId, int customerId) {

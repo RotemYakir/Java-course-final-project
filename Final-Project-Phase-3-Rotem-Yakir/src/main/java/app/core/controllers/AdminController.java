@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import app.core.auth.client.UserCredentials;
 import app.core.entities.Company;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
@@ -30,14 +29,14 @@ public class AdminController {
 	@Autowired
 	AdminService service;
 
-	@PostMapping("/login")
-	public String login(@RequestBody UserCredentials credentials) {
-		try {
-			return service.login(credentials);
-		} catch (CouponSystemException e) {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-		}
-	}
+//	@PostMapping("/login")
+//	public String login(@RequestBody UserCredentials credentials) {
+//		try {
+//			return service.login(credentials);
+//		} catch (CouponSystemException e) {
+//			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+//		}
+//	}
 
 	@PostMapping(path = "/add-company", headers = HttpHeaders.AUTHORIZATION)
 	public Company addCompany(@RequestBody Company company) {

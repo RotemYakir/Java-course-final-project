@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import app.core.auth.client.UserCredentials;
 import app.core.entities.Category;
 import app.core.entities.Company;
 import app.core.entities.Coupon;
@@ -32,14 +31,14 @@ public class CompanyController {
 	CompanyService service;
 
 
-	@PostMapping("/login")
-	public String login(@RequestBody UserCredentials credentials ) {
-		try {
-			return service.login(credentials);
-		} catch (CouponSystemException e) {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-		}
-	}
+//	@PostMapping("/login")
+//	public String login(@RequestBody UserCredentials credentials ) {
+//		try {
+//			return service.login(credentials);
+//		} catch (CouponSystemException e) {
+//			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+//		}
+//	}
 
 	@PostMapping(path = "/add-coupon",headers = HttpHeaders.AUTHORIZATION)
 	public Coupon addNewCoupon(@RequestBody Coupon coupon,@RequestParam int companyId) {
