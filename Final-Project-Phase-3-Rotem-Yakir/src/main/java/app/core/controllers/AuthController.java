@@ -12,7 +12,6 @@ import org.springframework.web.server.ResponseStatusException;
 import app.core.auth.client.UserCredentials;
 import app.core.exceptions.CouponSystemException;
 import app.core.services.AdminService;
-import app.core.services.ClientService;
 import app.core.services.CompanyService;
 import app.core.services.CustomerService;
 
@@ -22,13 +21,16 @@ import app.core.services.CustomerService;
 public class AuthController {
 
 	@Autowired
-	ClientService clientService;
+	AdminService adminService;
+	@Autowired
+	CompanyService companyService;
+	@Autowired
+	CustomerService customerService;
 
 	@PostMapping("/admin")
 	public String adminLogin(@RequestBody UserCredentials credentials) {
 		try {
-			AdminService service = (AdminService) clientService;
-			return service.login(credentials);
+			return adminService.login(credentials);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
 		}
@@ -37,8 +39,7 @@ public class AuthController {
 	@PostMapping("/company")
 	public String companyLogin(@RequestBody UserCredentials credentials) {
 		try {
-			CompanyService service = (CompanyService) clientService;
-			return service.login(credentials);
+			return companyService.login(credentials);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
 		}
@@ -47,8 +48,7 @@ public class AuthController {
 	@PostMapping("/customer")
 	public String customerLogin(@RequestBody UserCredentials credentials) {
 		try {
-			CustomerService service = (CustomerService) clientService;
-			return service.login(credentials);
+			return customerService.login(credentials);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
 		}
