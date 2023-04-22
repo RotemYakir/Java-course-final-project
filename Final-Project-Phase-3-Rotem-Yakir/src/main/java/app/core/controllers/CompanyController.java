@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import app.core.auth.UserCredentials;
+import app.core.auth.client.UserCredentials;
 import app.core.entities.Category;
 import app.core.entities.Company;
 import app.core.entities.Coupon;

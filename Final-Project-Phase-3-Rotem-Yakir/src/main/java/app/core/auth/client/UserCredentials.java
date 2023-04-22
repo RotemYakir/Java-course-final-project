@@ -1,4 +1,4 @@
-package app.core.auth;
+package app.core.auth.client;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
