@@ -1,10 +1,12 @@
-package app.core.auth;
+package app.core.auth.jwt;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+import app.core.auth.ClientType;
+import app.core.auth.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 

@@ -21,7 +21,7 @@ import app.core.exceptions.CouponSystemException;
 import app.core.services.CustomerService;
 
 @RestController
-@RequestMapping("/coupon-system/customer")
+@RequestMapping("/api/customer")
 public class CustomerController {
 
 	@Autowired

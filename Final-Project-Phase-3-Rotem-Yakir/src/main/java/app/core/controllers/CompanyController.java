@@ -22,7 +22,7 @@ import app.core.entities.Coupon;
 import app.core.exceptions.CouponSystemException;
 import app.core.services.CompanyService;
 
-@RequestMapping("/coupon-system/company")
+@RequestMapping("/api/company")
 @RestController
 public class CompanyController {
 

@@ -21,7 +21,7 @@ import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
 import app.core.services.AdminService;
 
-@RequestMapping("/coupon-system/admin")
+@RequestMapping("/api/admin")
 @RestController
 public class AdminController {
 

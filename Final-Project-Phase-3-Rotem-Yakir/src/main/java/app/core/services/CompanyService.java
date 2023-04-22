@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.core.auth.ClientType;
-import app.core.auth.JwtUtilUser;
 import app.core.auth.User;
 import app.core.auth.UserCredentials;
+import app.core.auth.jwt.JwtUtilUser;
 import app.core.entities.Category;
 import app.core.entities.Company;
 import app.core.entities.Coupon;

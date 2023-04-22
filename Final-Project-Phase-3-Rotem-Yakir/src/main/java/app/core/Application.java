@@ -2,9 +2,11 @@ package app.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import app.core.auth.AuthenticationFilter;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -17,10 +19,15 @@ public class Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
-
-		
 	}
-	
+
+	@Bean
+	FilterRegistrationBean<AuthenticationFilter> authenticationFilter(){
+		FilterRegistrationBean<AuthenticationFilter> regBean = new FilterRegistrationBean<>();
+		regBean.setFilter(new AuthenticationFilter());
+		regBean.addUrlPatterns("/api/*");
+		return regBean;
+	}
 	
 	
 	// for swagger authorization

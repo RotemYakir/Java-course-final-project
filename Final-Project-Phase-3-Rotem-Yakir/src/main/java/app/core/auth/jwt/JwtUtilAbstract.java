@@ -1,4 +1,4 @@
-package app.core.auth;
+package app.core.auth.jwt;
 
 import java.security.Key;
 import java.time.Instant;
