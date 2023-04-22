@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import app.core.entities.Company;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
-import app.core.login.ClientType;
-import app.core.login.User;
-import app.core.login.UserCredentials;
+import app.core.login.auth.ClientType;
 import app.core.login.auth.JwtUtilUser;
+import app.core.login.auth.User;
+import app.core.login.auth.UserCredentials;
 
 /**
  * a client service of administrator, to handle business logic operations/

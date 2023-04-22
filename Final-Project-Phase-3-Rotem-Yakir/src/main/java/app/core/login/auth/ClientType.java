@@ -1,4 +1,4 @@
-package app.core.login;
+package app.core.login.auth;
 
 
 public enum ClientType {

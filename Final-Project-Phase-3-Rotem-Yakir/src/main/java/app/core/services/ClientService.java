@@ -2,7 +2,7 @@ package app.core.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import app.core.login.UserCredentials;
+import app.core.login.auth.UserCredentials;
 import app.core.repositories.CompanyRepository;
 import app.core.repositories.CouponRepository;
 import app.core.repositories.CustomerRepository;

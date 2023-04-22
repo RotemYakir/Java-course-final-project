@@ -18,7 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 import app.core.entities.Company;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
-import app.core.login.UserCredentials;
+import app.core.login.auth.UserCredentials;
 import app.core.services.AdminService;
 
 @RequestMapping("/coupon-system/admin")

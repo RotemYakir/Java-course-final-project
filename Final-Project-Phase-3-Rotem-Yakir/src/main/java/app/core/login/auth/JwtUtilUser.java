@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import app.core.login.ClientType;
-import app.core.login.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 

@@ -17,7 +17,7 @@ import app.core.entities.Category;
 import app.core.entities.Coupon;
 import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
-import app.core.login.UserCredentials;
+import app.core.login.auth.UserCredentials;
 import app.core.services.CustomerService;
 
 @RestController
