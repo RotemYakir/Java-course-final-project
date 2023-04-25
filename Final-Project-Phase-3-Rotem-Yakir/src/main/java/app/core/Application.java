@@ -6,7 +6,10 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import app.core.auth.filters.AdminAuthorizationFilter;
 import app.core.auth.filters.AuthenticationFilter;
+import app.core.auth.filters.CompanyAuthorizationFilter;
+import app.core.auth.filters.CustomerAuthorizationFilter;
 import app.core.auth.jwt.JwtUtilUser;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -27,6 +30,32 @@ public class Application {
 		FilterRegistrationBean<AuthenticationFilter> regBean = new FilterRegistrationBean<>();
 		regBean.setFilter(new AuthenticationFilter(jwtUtilUser));
 		regBean.addUrlPatterns("/api/*");
+		return regBean;
+	}
+	
+	@Bean
+	FilterRegistrationBean<AdminAuthorizationFilter> adminAuthFilter(){
+		FilterRegistrationBean<AdminAuthorizationFilter> regBean = new FilterRegistrationBean<>();
+		regBean.setFilter(new AdminAuthorizationFilter());
+		regBean.addUrlPatterns("/api/admin/*");
+		return regBean;
+	}
+	
+	
+	@Bean
+	FilterRegistrationBean<CompanyAuthorizationFilter> companyAuthFilter(){
+		FilterRegistrationBean<CompanyAuthorizationFilter> regBean = new FilterRegistrationBean<>();
+		regBean.setFilter(new CompanyAuthorizationFilter());
+		regBean.addUrlPatterns("/api/company/*");
+		return regBean;
+	}
+	
+	
+	@Bean
+	FilterRegistrationBean<CustomerAuthorizationFilter> customerAuthFilter(){
+		FilterRegistrationBean<CustomerAuthorizationFilter> regBean = new FilterRegistrationBean<>();
+		regBean.setFilter(new CustomerAuthorizationFilter());
+		regBean.addUrlPatterns("/api/customer/*");
 		return regBean;
 	}
 	
