@@ -31,8 +31,15 @@ public class AuthenticationFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		
+		if(httpRequest.getMethod().equalsIgnoreCase("OPTIONS")) {
+			chain.doFilter(httpRequest, httpResponse);
+			return;
+		}
+		
 		String auth = httpRequest.getHeader("Authorization");
 		if (auth == null) {
+			httpResponse.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:3000");
 			httpResponse.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Bearer \"general api\"");
 			httpResponse.sendError(HttpStatus.UNAUTHORIZED.value(),
 					"You are not logged in. Please log in and try again.");
