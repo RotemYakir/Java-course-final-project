@@ -32,15 +32,6 @@ public class CompanyController {
 	@Autowired
 	CompanyService service;
 
-//	@PostMapping("/login")
-//	public String login(@RequestBody UserCredentials credentials ) {
-//		try {
-//			return service.login(credentials);
-//		} catch (CouponSystemException e) {
-//			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-//		}
-//	}
-
 	@PostMapping(path = "/add-coupon", headers = HttpHeaders.AUTHORIZATION)
 	public Coupon addNewCoupon(@RequestBody Coupon coupon, HttpServletRequest req) {
 		try {

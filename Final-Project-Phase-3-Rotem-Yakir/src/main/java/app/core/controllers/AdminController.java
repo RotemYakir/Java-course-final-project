@@ -29,14 +29,7 @@ public class AdminController {
 	@Autowired
 	AdminService service;
 
-//	@PostMapping("/login")
-//	public String login(@RequestBody UserCredentials credentials) {
-//		try {
-//			return service.login(credentials);
-//		} catch (CouponSystemException e) {
-//			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-//		}
-//	}
+
 
 	@PostMapping(path = "/add-company", headers = HttpHeaders.AUTHORIZATION)
 	public Company addCompany(@RequestBody Company company) {

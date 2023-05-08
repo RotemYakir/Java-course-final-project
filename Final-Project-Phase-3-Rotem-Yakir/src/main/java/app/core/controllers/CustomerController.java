@@ -29,15 +29,7 @@ public class CustomerController {
 	@Autowired
 	CustomerService service;
 
-//	@PostMapping("/login")
-//	public String login(@RequestBody UserCredentials credentials) {
-//		System.out.println(credentials);
-//		try {
-//			return service.login(credentials);
-//		} catch (CouponSystemException e) {
-//			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-//		}
-//	}
+
 
 	@PutMapping(path = "/purchase-coupon", headers = HttpHeaders.AUTHORIZATION)
 	public void purchaseCoupon(int couponId, HttpServletRequest req) {
