@@ -22,6 +22,10 @@ public class CompanyAuthorizationFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		if(httpRequest.getMethod().equalsIgnoreCase("OPTIONS")) {
+			chain.doFilter(httpRequest, httpResponse);
+			return;
+		}
 		User user = (User) httpRequest.getAttribute("user");
 		if(user.getClientType().equals(ClientType.COMPANY)) {
 			chain.doFilter(httpRequest, httpResponse);
