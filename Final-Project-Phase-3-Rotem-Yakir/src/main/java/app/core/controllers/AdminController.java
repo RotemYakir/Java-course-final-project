@@ -85,8 +85,8 @@ public class AdminController {
 		}
 	}
 
-	@DeleteMapping(path = "/delete-company", headers = HttpHeaders.AUTHORIZATION)
-	public void deleteCompany(int companyId) {
+	@DeleteMapping(path = "/delete-company/{companyId}", headers = HttpHeaders.AUTHORIZATION)
+	public void deleteCompany(@PathVariable int companyId) {
 		try {
 			service.deleteCompany(companyId);
 		} catch (CouponSystemException e) {
@@ -94,8 +94,8 @@ public class AdminController {
 		}
 	}
 
-	@DeleteMapping(path = "/delete-customer", headers = HttpHeaders.AUTHORIZATION)
-	public void deleteCustomer(int customerId) {
+	@DeleteMapping(path = "/delete-customer/{customerId}", headers = HttpHeaders.AUTHORIZATION)
+	public void deleteCustomer(@PathVariable int customerId) {
 		try {
 			service.deleteCustomer(customerId);
 		} catch (CouponSystemException e) {
