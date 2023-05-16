@@ -41,7 +41,7 @@ public class AdminService extends ClientService {
 	@Override
 	public String login(UserCredentials credentials) {
 		if (this.email.equals(credentials.getEmail()) && this.password.equals(credentials.getPassword())){
-			User user = new User(0,this.email,ClientType.ADMIN);  
+			User user = new User(1,this.email,ClientType.ADMIN);  
 			String token = jwtUtil.generateToken(user);
 			return token;
 		}else {
