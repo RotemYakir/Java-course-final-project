@@ -47,7 +47,6 @@ public class AuthenticationFilter implements Filter {
 			StringTokenizer tokenizer = new StringTokenizer(auth);
 			tokenizer.nextToken();
 			String jwt = tokenizer.nextToken();
-			
 			try {
 				User user = jwtUtil.extractUser(jwt);
 				httpRequest.setAttribute("user", user);
@@ -57,7 +56,6 @@ public class AuthenticationFilter implements Filter {
 				httpResponse.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Bearer \"general api\"");
 			}
 		}
-
 	}
 
 }
