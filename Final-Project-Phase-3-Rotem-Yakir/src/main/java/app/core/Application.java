@@ -31,6 +31,7 @@ public class Application {
 		FilterRegistrationBean<AuthenticationFilter> regBean = new FilterRegistrationBean<>();
 		regBean.setFilter(new AuthenticationFilter(jwtUtilUser));
 		regBean.addUrlPatterns("/api/*");
+		regBean.setOrder(1);
 		return regBean;
 	}
 	
@@ -39,6 +40,7 @@ public class Application {
 		FilterRegistrationBean<AdminAuthorizationFilter> regBean = new FilterRegistrationBean<>();
 		regBean.setFilter(new AdminAuthorizationFilter());
 		regBean.addUrlPatterns("/api/admin/*");
+		regBean.setOrder(2);
 		return regBean;
 	}
 	
@@ -47,6 +49,7 @@ public class Application {
 		FilterRegistrationBean<CompanyAuthorizationFilter> regBean = new FilterRegistrationBean<>();
 		regBean.setFilter(new CompanyAuthorizationFilter());
 		regBean.addUrlPatterns("/api/company/*");
+		regBean.setOrder(2);
 		return regBean;
 	}
 	
@@ -55,13 +58,13 @@ public class Application {
 		FilterRegistrationBean<CustomerAuthorizationFilter> regBean = new FilterRegistrationBean<>();
 		regBean.setFilter(new CustomerAuthorizationFilter());
 		regBean.addUrlPatterns("/api/customer/*");
+		regBean.setOrder(2);
 		return regBean;
 	}
 	
 	
 	// for swagger authorization
 		@Bean
-		@Order(3)
 		OpenAPI customOpenAPI() {
 			return new OpenAPI().info(new Info().title("title").version("version").description("description"))
 					.addSecurityItem(new SecurityRequirement().addList("my security"))
