@@ -10,11 +10,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 
 import app.core.auth.client.ClientType;
 import app.core.auth.client.User;
 
+@Order(2)
 public class AdminAuthorizationFilter implements Filter {
 
 	@Override
