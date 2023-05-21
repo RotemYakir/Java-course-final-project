@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import app.core.auth.filters.AdminAuthorizationFilter;
@@ -41,7 +42,6 @@ public class Application {
 		return regBean;
 	}
 	
-	
 	@Bean
 	FilterRegistrationBean<CompanyAuthorizationFilter> companyAuthFilter(){
 		FilterRegistrationBean<CompanyAuthorizationFilter> regBean = new FilterRegistrationBean<>();
@@ -49,7 +49,6 @@ public class Application {
 		regBean.addUrlPatterns("/api/company/*");
 		return regBean;
 	}
-	
 	
 	@Bean
 	FilterRegistrationBean<CustomerAuthorizationFilter> customerAuthFilter(){
@@ -62,6 +61,7 @@ public class Application {
 	
 	// for swagger authorization
 		@Bean
+		@Order(3)
 		OpenAPI customOpenAPI() {
 			return new OpenAPI().info(new Info().title("title").version("version").description("description"))
 					.addSecurityItem(new SecurityRequirement().addList("my security"))

@@ -11,14 +11,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
 import app.core.auth.client.User;
 import app.core.auth.jwt.JwtUtilUser;
 
-@Order(1)
 public class AuthenticationFilter implements Filter {
 
 	JwtUtilUser jwtUtil;
