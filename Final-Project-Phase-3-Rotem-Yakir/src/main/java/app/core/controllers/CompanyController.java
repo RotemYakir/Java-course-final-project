@@ -36,7 +36,7 @@ public class CompanyController {
 	@PostMapping(path = "/add-coupon", headers = HttpHeaders.AUTHORIZATION)
 	public Coupon addNewCoupon(@RequestBody Coupon coupon, HttpServletRequest req) {
 		try {
-			int userId= (int) ((User) req.getAttribute("user")).getId();
+			int userId = (int) ((User) req.getAttribute("user")).getId();
 			return service.addNewCoupon(coupon, userId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -46,7 +46,7 @@ public class CompanyController {
 	@PutMapping(path = "/update-coupon", headers = HttpHeaders.AUTHORIZATION)
 	public Coupon updateCoupon(@RequestBody Coupon coupon, HttpServletRequest req) {
 		try {
-			int userId= (int) ((User) req.getAttribute("user")).getId();
+			int userId = (int) ((User) req.getAttribute("user")).getId();
 			return service.updateCoupon(coupon, userId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -56,7 +56,7 @@ public class CompanyController {
 	@DeleteMapping(path = "delete-coupon/{couponId}", headers = HttpHeaders.AUTHORIZATION)
 	public void deleteCoupon(@PathVariable int couponId, HttpServletRequest req) {
 		try {
-			int userId= (int) ((User) req.getAttribute("user")).getId();
+			int userId = (int) ((User) req.getAttribute("user")).getId();
 			service.deleteCoupon(couponId, userId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -66,7 +66,7 @@ public class CompanyController {
 	@GetMapping(path = "get-all-coupons", headers = HttpHeaders.AUTHORIZATION)
 	public List<Coupon> getAllCoupons(HttpServletRequest req) {
 		try {
-			int userId= (int) ((User) req.getAttribute("user")).getId();
+			int userId = (int) ((User) req.getAttribute("user")).getId();
 			return service.getAllCoupons(userId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -76,7 +76,7 @@ public class CompanyController {
 	@GetMapping(path = "get-coupons-by-category", headers = HttpHeaders.AUTHORIZATION)
 	public List<Coupon> getCouponsByCategory(Category category, HttpServletRequest req) {
 		try {
-			int userId= (int) ((User) req.getAttribute("user")).getId();
+			int userId = (int) ((User) req.getAttribute("user")).getId();
 			return service.getCouponsByCategory(category, userId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -86,8 +86,8 @@ public class CompanyController {
 	@GetMapping(path = "/get-coupons-max-price", headers = HttpHeaders.AUTHORIZATION)
 	public List<Coupon> getCouponsUpToMaxPrice(double price, HttpServletRequest req) {
 		try {
-			int userId= (int) ((User) req.getAttribute("user")).getId();
-			return service.getCouponsUpToMaxPrice(price,userId);
+			int userId = (int) ((User) req.getAttribute("user")).getId();
+			return service.getCouponsUpToMaxPrice(price, userId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
@@ -96,7 +96,7 @@ public class CompanyController {
 	@GetMapping(path = "/get-details", headers = HttpHeaders.AUTHORIZATION)
 	public Company getCompanyDetails(HttpServletRequest req) {
 		try {
-			int userId= (int) ((User) req.getAttribute("user")).getId();
+			int userId = (int) ((User) req.getAttribute("user")).getId();
 			return service.getCompanyDetails(userId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());

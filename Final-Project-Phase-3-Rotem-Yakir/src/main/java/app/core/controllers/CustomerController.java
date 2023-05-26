@@ -42,10 +42,10 @@ public class CustomerController {
 	}
 
 	@GetMapping(path = "/get-coupons", headers = HttpHeaders.AUTHORIZATION)
-	public List<Coupon> getAllCoupons(HttpServletRequest req) {
+	public List<Coupon> getCoupons(HttpServletRequest req) {
 		try {
 			int userId= (int) ((User) req.getAttribute("user")).getId();
-			return service.getAllCoupons(userId);
+			return service.getCoupons(userId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
@@ -68,6 +68,15 @@ public class CustomerController {
 			return service.getCouponsUpToMaxPrice(price, userId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+}
+
+	@GetMapping(path = "/get-all-coupons", headers = HttpHeaders.AUTHORIZATION)
+	public List<Coupon> getAllCoupons() {
+		try {
+			return service.getAllCoupons();
+		} catch (CouponSystemException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 	}
 

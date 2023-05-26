@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import app.core.auth.filters.AdminAuthorizationFilter;
@@ -19,6 +20,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 
 @EnableScheduling
 @SpringBootApplication
+@Order()
 public class Application {
 
 	public static void main(String[] args) {
@@ -70,5 +72,4 @@ public class Application {
 					.components(new Components().addSecuritySchemes("my security",
 							new SecurityScheme().name("my security").type(SecurityScheme.Type.HTTP).scheme("bearer")));
 		}
-
 }

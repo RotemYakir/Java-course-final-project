@@ -84,7 +84,7 @@ public class CustomerService extends ClientService {
 	 * @throws CouponSystemException if the customer doesn't exist by the inserted
 	 *                               id
 	 */
-	public List<Coupon> getAllCoupons(int customerId) {
+	public List<Coupon> getCoupons(int customerId) {
 		if (customerRepo.existsById(customerId)) {
 			return couponRepo.findAllByCustomersId(customerId);
 		} else {
@@ -133,4 +133,12 @@ public class CustomerService extends ClientService {
 				"Failed to get the customer's details. a customer with id: " + customerId + " doesn't exist"));
 	}
 
+	/**
+	 * @return all the coupons from the data base
+	 */
+	public List<Coupon> getAllCoupons(){
+		return couponRepo.findAll();
+	}
+	
+	
 }
