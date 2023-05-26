@@ -52,7 +52,7 @@ public class AuthenticationFilter implements Filter {
 				httpRequest.setAttribute("user", user);
 				chain.doFilter(httpRequest, response);
 			} catch (Exception e) {
-				httpResponse.sendError(HttpStatus.UNAUTHORIZED.value(), "You are not logged in: " + e.getMessage());
+				httpResponse.sendError(HttpStatus.BAD_GATEWAY.value(), e.getMessage());
 				httpResponse.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Bearer \"general api\"");
 			}
 		}
