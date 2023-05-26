@@ -63,13 +63,6 @@ public class Coupon {
 	@ToString.Exclude
 	private List<Customer> customers;
 
-	
-	/**
-	 * @return the id of the company that owns the coupon
-	 */
-	public int getCompanyId() {
-		return this.getCompany().getId();
-	}
 
 	/**
 	 * constructs a coupon with no id. Used in service where the id is

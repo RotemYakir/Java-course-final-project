@@ -97,16 +97,10 @@ public class CompanyService extends ClientService {
 		Optional<Coupon> opt = couponRepo.findById(coupon.getId());
 		if (opt.isPresent()) {
 			Coupon couponFromDb = opt.get();
-			if (couponFromDb.getCompanyId() != companyId) {
-				throw new CouponSystemException("Failed to update the coupon. the company doesn't own the coupon.");
-			}
 			if (couponRepo.existsByTitleAndCompany_id(coupon.getTitle(), companyId)
 					&& !coupon.getTitle().equals(couponFromDb.getTitle())) {
 				throw new CouponSystemException("Failed to update the coupon (id: " + coupon.getId()
 						+ ") coupon title: " + coupon.getTitle() + " already exists in the company.");
-			}
-			if (coupon.getCompanyId() != couponFromDb.getCompanyId()) {
-				throw new CouponSystemException("Failed to update the coupon - cannot change company id.");
 			}
 			if (coupon.getEndDate().isBefore(LocalDate.now())) {
 				throw new CouponSystemException(
@@ -132,13 +126,7 @@ public class CompanyService extends ClientService {
 	public void deleteCoupon(int couponId, int companyId) {
 		Optional<Coupon> opt = couponRepo.findById(couponId);
 		if (opt.isPresent()) {
-			Coupon couponToDelete = opt.get();
-			if (couponToDelete.getCompanyId() != companyId) {
-				throw new CouponSystemException(
-						"Failed to delete coupon id: " + couponId + " the company doesn't own the coupon.");
-			} else {
 				couponRepo.deleteById(couponId);
-			}
 		} else {
 			throw new CouponSystemException("Failed to delete coupon id: " + couponId + " coupon not found.");
 		}
