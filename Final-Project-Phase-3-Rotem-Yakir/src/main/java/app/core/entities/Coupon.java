@@ -40,7 +40,6 @@ public class Coupon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "company_id")
 	@ToString.Exclude
@@ -55,6 +54,7 @@ public class Coupon {
 	private LocalDate endDate;
 	private int amount;
 	private double price;
+	@Column(length = 200)
 	private String image;
 	@ManyToMany
 	@JoinTable(name = "customers_vs_coupons", joinColumns = { @JoinColumn(name = "coupon_id") }, inverseJoinColumns = {
