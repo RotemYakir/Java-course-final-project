@@ -52,8 +52,8 @@ public class AuthenticationFilter implements Filter {
 				httpRequest.setAttribute("user", user);
 				chain.doFilter(httpRequest, response);
 			} catch (Exception e) {
-				httpResponse.sendError(HttpStatus.BAD_GATEWAY.value(), e.getMessage());
 				httpResponse.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Bearer \"general api\"");
+				httpResponse.sendError(HttpStatus.BAD_GATEWAY.value(), e.getMessage());
 			}
 		}
 	}
