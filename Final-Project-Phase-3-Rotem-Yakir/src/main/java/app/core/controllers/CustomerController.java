@@ -42,6 +42,9 @@ public class CustomerController {
 		}
 	}
 
+	/**
+	 * @return all the coupons owned by the customer
+	 */
 	@GetMapping(path = "/get-coupons", headers = HttpHeaders.AUTHORIZATION)
 	public List<Coupon> getCoupons(HttpServletRequest req) {
 		try {
@@ -72,6 +75,9 @@ public class CustomerController {
 		}
 }
 
+	/**
+	 * @return all coupons from the database
+	 */
 	@GetMapping(path = "/get-all-coupons", headers = HttpHeaders.AUTHORIZATION)
 	public List<Coupon> getAllCoupons() {
 		try {
