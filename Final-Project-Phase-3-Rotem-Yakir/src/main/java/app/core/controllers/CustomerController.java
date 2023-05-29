@@ -30,8 +30,6 @@ public class CustomerController {
 	@Autowired
 	CustomerService service;
 
-
-
 	@PutMapping(path = "/purchase-coupon/{couponId}", headers = HttpHeaders.AUTHORIZATION)
 	public void purchaseCoupon(@PathVariable int couponId, HttpServletRequest req) {
 		try {
