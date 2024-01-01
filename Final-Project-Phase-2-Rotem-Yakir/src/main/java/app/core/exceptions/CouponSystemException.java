@@ -29,5 +29,4 @@ public class CouponSystemException extends RuntimeException {
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
-
 }
