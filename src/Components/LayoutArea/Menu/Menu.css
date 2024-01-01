@@ -1,0 +1,18 @@
+.Menu {
+    box-sizing: border-box;
+    position: absolute;
+
+}
+
+.Menu a {
+    margin-left: 15px;
+    margin-right: 15px;
+    font-weight: 100;
+    font-size: medium;
+    text-decoration: none;
+    box-sizing: border-box;
+    border-radius: 70px;
+    padding: 5px;
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px rgb(142, 143, 209);
+}

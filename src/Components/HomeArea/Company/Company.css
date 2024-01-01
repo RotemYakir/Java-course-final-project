@@ -1,0 +1,28 @@
+.Company{
+    height: 250px;
+}
+
+.Company a {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 70px;
+    margin-top: 40px;
+    box-sizing: border-box;
+    border-radius: 60px;
+    text-decoration-line: none;
+    color: black;
+    text-align: center;
+    line-height: normal;
+    height: fit-content;
+    padding: 10px;
+    border: 1px solid rgb(156, 189, 211);
+    
+}
+
+.Company #add{
+background-color: rgb(157, 231, 232);
+}
+
+.Company #coupons{
+    background-color: rgb(195, 245, 235);
+}

@@ -1,0 +1,55 @@
+.CompanyDetails {
+    background-image: url("/src/Assets/companyBackground.PNG");
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: black;
+    text-align: left;
+    border: 1px solid rgb(196, 192, 192);
+    line-height: 10vh;
+    font-size: large;
+    background-size: cover;
+    height: 45vh;
+    width: 100vh;
+
+}
+
+.CompanyDetails #details {
+    margin-top: 6vh;
+    margin-left: 30vh;
+    left: 100;
+}
+
+.CompanyDetails span {
+    text-decoration: underline;
+}
+
+.CompanyDetails #company_icon {
+    display: inline-flex;
+    color: rgb(255, 255, 255);
+    font-size: xxx-large;
+    padding-left: 1.5vw; 
+}
+
+.CompanyDetails a {
+    position: absolute;
+    box-sizing: border-box;
+    border-radius: 60px;
+    text-decoration-line: none;
+    color: black;
+    text-align: center;
+    line-height: normal;
+    width: 8vw;
+    height: fit-content;
+    padding: 10px;
+    bottom:20vh;
+    
+}
+
+.CompanyDetails #delete {
+    background-color: rgb(234, 92, 90);
+    margin-left: 33vh;
+}
+.CompanyDetails #edit {
+    background-color: rgb(241, 194, 65);
+    margin-left: 55vh;
+}

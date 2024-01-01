@@ -1,0 +1,54 @@
+.Login {
+    width: 400px;
+    height: 300px;
+    left: 495px;
+    top: 25%;
+}
+
+.Login>form {
+    width: 250px;
+    text-align: left;
+    margin: auto;
+}
+
+.Login input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+.Login button{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.Login span {
+    position: relative;
+    color: rgb(254, 15, 15);
+    margin-left: 10px;
+    font-size: 95%;
+}
+
+#icon {
+    color: rgba(0, 0, 0, 0.43);
+    cursor: pointer;
+    position: relative;
+    bottom: 40px;
+    left: 215px;
+}
+.input-field{
+    border-radius: 24px;
+}
+
+.Login h2 {
+    text-align: center;
+}
+
+.Login select {
+    height: 27px;
+    margin-top: 6px;
+    margin-left: 1025;
+    margin-left: 21px;
+}

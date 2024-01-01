@@ -1,0 +1,26 @@
+.CouponCard {
+    background-image: url("/src/Assets/couponBackground.jpg");
+    background-repeat: no-repeat;
+    display: inline-flex;
+    color: black;
+    text-align: left;
+    line-height: 27px;
+    height: 100px;
+    width: 230px;
+    background-position: center center;
+    background-size: cover;
+}
+
+.CouponCard img{
+    width: 73px;
+    height: 73px;
+    border: 1px solid;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+
+.CouponCard >div:last-child{
+    margin: auto;
+    margin-right: 0;
+}  
+

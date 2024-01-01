@@ -1,0 +1,42 @@
+.Layout {
+    height: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 15% 80% 5%;
+    grid-template-columns: repeat(8, 1fr);
+    border: 1px solid black;
+}
+
+.Layout header {
+    grid-column: span 8;
+    background-image: linear-gradient(180deg, rgba(33, 47, 101, 0.825), rgba(14, 76, 142, 0.849));
+    color: white;
+}
+
+.Layout footer {
+    grid-column: span 8;
+    color: white;
+    background-image: linear-gradient(180deg, rgba(33, 47, 101, 0.825), rgba(14, 76, 142, 0.849));
+}
+
+.Layout main {
+    grid-column: span 8;
+    overflow: auto;
+}
+
+.Menu a {
+    font-weight: 100;
+    font-size: medium;
+    text-decoration: none;
+    box-sizing: border-box;
+    border-radius: 70px;
+    padding: 5px;
+    color: rgb(255, 255, 255);
+    background-image: linear-gradient(180deg, rgba(20, 12, 76, 0.822), rgba(54, 29, 154, 0.831));
+    box-shadow: 0px 0px 10px  rgb(142, 143, 209);
+}
+
+.Menu .active{
+
+    background-image: linear-gradient(180deg, rgba(83, 30, 143, 0.822), rgba(96, 21, 126, 0.831));
+}

@@ -1,0 +1,10 @@
+.SearchByPrice {
+    color: black;
+    font-weight: 500;
+}
+
+.SearchByPrice input{
+    width: 120px;
+    margin-right: 7px;
+}
+

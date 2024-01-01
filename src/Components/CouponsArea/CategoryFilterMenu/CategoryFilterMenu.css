@@ -1,0 +1,23 @@
+.CategoryFilterMenu {
+}
+
+.CategoryFilterMenu a {
+    color: black;
+    margin-right: 40px;
+    box-sizing: border-box;
+    border-radius: 60px;
+    text-decoration-line: none;
+    color: black;
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    bottom:20vh;
+    padding: 6px;
+    
+}
+
+.CategoryFilterMenu a:hover{
+    background-color: rgba(233, 210, 244, 0.654);
+}
+
+

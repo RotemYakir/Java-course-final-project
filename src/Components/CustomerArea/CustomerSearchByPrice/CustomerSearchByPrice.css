@@ -1,0 +1,9 @@
+.CustomerSearchByPrice {
+	color: black;
+    font-weight: 500;
+}
+
+.CustomerSearchByPrice input{
+    width: 120px;
+    margin-right: 7px;
+}

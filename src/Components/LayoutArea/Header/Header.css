@@ -1,0 +1,15 @@
+.Header {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Header>h1{
+    font-style:italic;
+    font-size: 350%;
+    font-weight: 400;
+}
+
+
+

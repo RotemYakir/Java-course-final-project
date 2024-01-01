@@ -1,0 +1,27 @@
+.CompanyCard {	
+        background-image: url("/src/Assets/companyBackground.PNG");
+        background-repeat: no-repeat;
+        background-position: center center;
+        color: black;
+        text-align: left;
+        margin-top: 6vh;
+        border: 1px solid rgb(196, 192, 192);
+        line-height: 6vh;
+        height: 20vh;
+        width: 20vw;
+        font-size: 15px;
+        background-size: cover;
+    }
+    .CompanyCard div{
+        position: relative;
+        left: 4.5vw; 
+        bottom: 4vh;
+    }
+
+ 
+
+    .CompanyCard #company_icon{
+    display: inline-flex;
+    font-size: 23px;
+    color: white;
+    }

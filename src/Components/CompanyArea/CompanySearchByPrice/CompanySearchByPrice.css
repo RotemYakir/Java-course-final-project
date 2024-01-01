@@ -1,0 +1,9 @@
+.CompanySearchByPrice {
+	color: black;
+    font-weight: 500;
+}
+
+.CompanySearchByPrice input{
+    width: 120px;
+    margin-right: 7px;
+}

@@ -1,0 +1,37 @@
+.UpdateCoupon {
+    
+        margin-top: 25px;
+        width: 400px;
+        overflow: auto;
+    }
+    
+    .UpdateCoupon>form {
+        width: 250px;
+        text-align: left;
+        margin: auto;
+    }
+    
+    .UpdateCoupon input,
+    .UpdateCoupon select,
+    .UpdateCoupon button {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+    
+    .UpdateCoupon span {
+        position: relative;
+        color: rgb(254, 15, 15);
+        font-weight: 500;
+        margin-left: 5px;
+        font-size: small;
+    }
+    
+    .UpdateCoupon h2 {
+        text-align: center;
+    }
+    
+    .UpdateCoupon select {
+        height: 25px;
+    }	
+

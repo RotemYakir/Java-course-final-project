@@ -1,0 +1,25 @@
+.EditCompany {
+    height: fit-content;
+    width: 400px;
+    left: 575px;
+}
+
+.EditCompany>form {
+    width: 250px;
+    text-align: left;
+    margin: auto;
+}
+
+.EditCompany input,
+.EditCompany button{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.EditCompany span {
+    position: absolute;
+    color: rgb(254, 15, 15);
+    font-weight: 500;
+    margin-left: 5px;
+}

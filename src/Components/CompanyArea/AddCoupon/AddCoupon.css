@@ -1,0 +1,35 @@
+.AddCoupon {
+    margin-top: 25px;
+    width: 400px;
+    overflow: auto;
+}
+
+.AddCoupon>form {
+    width: 250px;
+    text-align: left;
+    margin: auto;
+}
+
+.AddCoupon input,
+.AddCoupon select,
+.AddCoupon button {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.AddCoupon span {
+    position: relative;
+    color: rgb(254, 15, 15);
+    font-weight: 500;
+    margin-left: 5px;
+    font-size: small;
+}
+
+.AddCoupon h2 {
+    text-align: center;
+}
+
+.AddCoupon select {
+    height: 25px;
+}
